@@ -4,233 +4,173 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hammid Bin Aejaz | Portfolio</title>
-
-<!-- Font Awesome for icons -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-
 <style>
-  /* Base */
-  body { font-family:'Arial',sans-serif; margin:0; padding:0; scroll-behavior:smooth; transition: background 0.3s, color 0.3s;}
-  a { text-decoration:none; transition: color 0.3s;}
-  .btn { display:inline-block; padding:8px 15px; background:#1de9b6; color:#000; font-weight:bold; border-radius:5px; margin-top:10px; transition:0.3s; }
-  .btn:hover { background:#14c89f; }
+:root {
+  --bg-light:#fff; --bg-dark:#0f172a;
+  --text-light:#1e293b; --text-dark:#f1f5f9;
+  --accent:#3b82f6;
+}
+body {margin:0;font-family:'Inter',sans-serif;background:var(--bg-light);color:var(--text-light);scroll-behavior:smooth;transition:0.3s;}
+body.dark {background:var(--bg-dark);color:var(--text-dark);}
+a {color:var(--accent);text-decoration:none;font-weight:600;transition:0.3s;}
+a:hover{text-decoration:underline;}
+.btn {display:inline-block;padding:8px 15px;background:var(--accent);color:#fff;border-radius:8px;font-weight:600;margin-top:10px;transition:0.3s;}
+.btn:hover{background:#2563eb;}
+.toggle-btn{position:fixed;top:15px;right:15px;width:50px;height:26px;background:#cbd5e1;border-radius:50px;cursor:pointer;z-index:200;}
+.circle{width:20px;height:20px;background:#fff;border-radius:50%;margin:3px;transition:0.3s;}
+body.dark .circle{transform:translateX(24px);}
+nav{position:fixed;top:0;width:100%;display:flex;justify-content:center;gap:30px;padding:15px 0;background:rgba(255,255,255,0.9);backdrop-filter:blur(10px);z-index:100;transition:0.3s;}
+body.dark nav{background:rgba(15,23,42,0.9);}
+nav a{color:var(--text-light);font-weight:600;}
+body.dark nav a{color:var(--text-dark);}
+nav a:hover{color:var(--accent);}
+.container{width:90%;max-width:1000px;margin:auto;padding:120px 20px 50px;}
+section{margin-bottom:60px;opacity:0;transform:translateY(30px);transition:all 0.8s ease-out;}
+section.visible{opacity:1;transform:translateY(0);}
+h2{text-align:center;color:var(--accent);margin-bottom:30px;font-size:1.8rem;}
+.hero{display:flex;flex-direction:column;align-items:center;text-align:center;padding:60px 0;}
+.profile-photo{width:150px;height:150px;border-radius:50%;border:3px solid var(--accent);margin-bottom:20px;object-fit:cover;}
+.hero h1{font-size:2.3em;margin-bottom:10px;font-weight:700;}
+.hero p.intro{font-size:1.1em;line-height:1.6;max-width:650px;margin-bottom:15px;}
+.grid{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;}
+.card{background:#f8fafc;padding:20px;border-radius:12px;width:280px;text-align:center;box-shadow:0 4px 12px rgba(0,0,0,0.08);transition:all 0.3s;}
+.card:hover{transform:translateY(-5px);box-shadow:0 6px 16px rgba(0,0,0,0.12);}
+body.dark .card{background:#1e293b;}
+.card i{font-size:2em;margin-bottom:10px;color:var(--accent);}
+footer{text-align:center;padding:2rem;font-size:0.9rem;color:#94a3b8;}
+@media(max-width:600px){.card{width:100%;} nav{flex-direction:column;gap:10px;}}
 
-  /* Dark/Light Toggle */
-  .toggle-btn { position:fixed; top:15px; right:15px; background:#1de9b6; color:#000; padding:8px 12px; border:none; border-radius:5px; cursor:pointer; z-index:200; }
-  .dark { background:#0f2027; color:#fff; }
-  .dark nav { background:rgba(15,32,39,0.95); border-bottom:1px solid #1de9b6;}
-  .dark .card { background: rgba(255,255,255,0.05); border:1px solid #1de9b6; }
-
-  /* Navbar */
-  nav { position:fixed; top:0; width:100%; display:flex; justify-content:center; gap:30px; padding:15px 0; z-index:100; background:rgba(15,32,39,0.95); border-bottom:1px solid #1de9b6; }
-  nav a { font-weight:bold; color:#1de9b6; } 
-  nav a:hover { color:#14c89f; }
-
-  /* Container */
-  .container { width:90%; max-width:1000px; margin:auto; padding:120px 20px 20px 20px; }
-
-  /* Hero */
-  .hero { display:flex; flex-direction:column; align-items:center; text-align:center; padding:50px 0 30px 0; }
-  .profile-photo { width:160px; height:160px; border-radius:50%; border:4px solid #1de9b6; margin-bottom:20px; object-fit:cover; }
-  .hero h1 { font-size:2.5em; margin-bottom:10px; }
-  .hero p.intro { font-size:1.1em; line-height:1.5; max-width:600px; }
-  .typing { font-weight:bold; color:#1de9b6; border-right:3px solid #1de9b6; white-space:nowrap; overflow:hidden; display:inline-block; }
-
-  @keyframes blink { 50% { border-color: transparent; } }
-
-  /* Sections */
-  section { margin-bottom:50px; opacity:0; transform: translateY(30px); transition: all 0.8s ease-out; }
-  section.visible { opacity:1; transform: translateY(0); }
-
-  /* Cards */
-  .skills, .projects, .certificates, .hobbies, .contact { display:flex; flex-wrap:wrap; gap:20px; justify-content:center; }
-  .card { background: rgba(255,255,255,0.05); border:1px solid #1de9b6; border-radius:10px; padding:20px; width:280px; text-align:center; transition: transform 0.3s, box-shadow 0.3s; position:relative; cursor:pointer; }
-  .card:hover { transform: rotateX(5deg) rotateY(5deg) translateY(-10px); box-shadow:0 15px 40px rgba(0,0,0,0.6); }
-  .card i { font-size:2em; margin-bottom:10px; color:#1de9b6; }
-
-  /* Tooltip for skills */
-  .card[data-tooltip]::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    bottom: 110%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #1de9b6;
-    color: #000;
-    padding: 5px 10px;
-    border-radius: 5px;
-    white-space: nowrap;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s;
-    font-size: 0.85em;
-    z-index: 10;
-  }
-  .card[data-tooltip]::before {
-    content: "";
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent transparent #1de9b6 transparent;
-    opacity: 0;
-    transition: opacity 0.3s;
-    pointer-events: none;
-    z-index: 10;
-  }
-  .card[data-tooltip]:hover::after,
-  .card[data-tooltip]:hover::before {
-    opacity: 1;
-  }
-
-  /* Responsive */
-  @media(max-width:600px){ 
-    .card{width:100%;} 
-    nav{flex-direction:column; gap:10px;} 
-  }
-
+/* Me Core / Books */
+#me-core .book-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px;margin-top:20px;}
+.book-card {background:#fff;color:#1e293b;padding:15px;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,0.08);transition:all 0.3s;opacity:0;transform:translateY(10px);}
+.book-card.visible {opacity:1;transform:translateY(0);}
+body.dark .book-card {background:#1e293b;color:#f1f5f9;box-shadow:0 2px 6px rgba(0,0,0,0.3);}
+.book-card:hover {transform:translateY(-4px);box-shadow:0 4px 8px rgba(0,0,0,0.12);}
 </style>
 </head>
-<body class="dark">
+<body>
 
-<button class="toggle-btn" onclick="toggleTheme()">Toggle Dark/Light</button>
+<div class="toggle-btn" id="themeToggle"><div class="circle"></div></div>
 
 <nav>
-  <a href="#about">About</a>
-  <a href="#skills">Skills</a>
-  <a href="#projects">Projects</a>
-  <a href="#certificates">Certificates</a>
-  <a href="#hobbies">Hobbies</a>
-  <a href="#contact">Contact</a>
+<a href="#about">About</a>
+<a href="#skills">Skills</a>
+<a href="#projects">Projects</a>
+<a href="#certificates">Certificates</a>
+<a href="#hobbies">Hobbies</a>
+<a href="#me-core">Me Core</a>
+<a href="#contact">Contact</a>
 </nav>
 
 <div class="container">
 
-  <!-- About -->
-  <section id="about" class="hero">
-    <img src="assets/profile.jpg" alt="Hammid Bin Aejaz" class="profile-photo">
-    <h1>Hammid Bin Aejaz</h1>
-    <p class="intro">
-      Hi! I’m Hammid, an AI and Machine Learning enthusiast. I enjoy turning data into meaningful insights and building smart systems.  
-      Tackling real-world problems and creating impactful projects keeps me motivated every day.
-    </p>
-    <p>
-      <a href="mailto:hammidbinaejaz@gmail.com">Email</a> | 
-      <a href="https://github.com/hammidbinaejaz" target="_blank">GitHub</a> | 
-      <a href="https://www.linkedin.com/in/hamid-bin-aejaz-7b7b392a2/" target="_blank">LinkedIn</a>
-    </p>
-  </section>
+<!-- About -->
+<section id="about" class="hero">
+<img src="assets/profile.jpg" alt="Hammid Bin Aejaz" class="profile-photo">
+<h1>Hammid Bin Aejaz</h1>
+<p class="intro">Hi! I’m Hammid, an AI & ML enthusiast. I enjoy turning data into insights and building smart systems.</p>
+<p><a href="mailto:hammidbinaejaz@gmail.com">Email</a> | <a href="https://github.com/hammidbinaejaz" target="_blank">GitHub</a> | <a href="https://www.linkedin.com/in/hamid-bin-aejaz-7b7b392a2/" target="_blank">LinkedIn</a></p>
+</section>
 
-  <!-- Skills -->
-  <section id="skills">
-    <h2 style="text-align:center;">Skills</h2>
-    <div class="skills">
-      <div class="card" data-tooltip="Python programming, scripting, and data analysis"><i class="fab fa-python"></i>Python</div>
-      <div class="card" data-tooltip="Java development and OOP concepts"><i class="fab fa-java"></i>Java</div>
-      <div class="card" data-tooltip="C programming and fundamentals"><i class="fas fa-c"></i>C</div>
-      <div class="card" data-tooltip="Building and deploying ML models"><i class="fas fa-robot"></i>Machine Learning</div>
-      <div class="card" data-tooltip="Data analytics using Pandas, Excel, and visualization"><i class="fas fa-chart-line"></i>Data Analytics</div>
-      <div class="card" data-tooltip="AI concepts, neural networks, NLP"><i class="fas fa-brain"></i>Artificial Intelligence</div>
-      <div class="card" data-tooltip="Exploratory Data Analysis"><i class="fas fa-database"></i>EDA</div>
-      <div class="card" data-tooltip="Pandas, NumPy, Scikit-Learn libraries"><i class="fas fa-project-diagram"></i>Pandas / NumPy / Scikit-Learn</div>
-      <div class="card" data-tooltip="Version control and GitHub workflows"><i class="fab fa-git-alt"></i>Git / GitHub</div>
-      <div class="card" data-tooltip="DSA concepts, algorithms, and problem solving"><i class="fas fa-network-wired"></i>Data Structures & Algorithms</div>
-      <div class="card" data-tooltip="Networking fundamentals and protocols"><i class="fas fa-server"></i>Networking</div>
-      <div class="card" data-tooltip="Deep Learning and neural networks"><i class="fas fa-layer-group"></i>Deep Learning</div>
-    </div>
-  </section>
+<!-- Skills -->
+<section id="skills">
+<h2>Skills</h2>
+<div class="grid">
+<div class="card"><i class="fab fa-python"></i>Python</div>
+<div class="card"><i class="fab fa-java"></i>Java</div>
+<div class="card"><i class="fas fa-c"></i>C</div>
+<div class="card"><i class="fas fa-robot"></i>Machine Learning</div>
+<div class="card"><i class="fas fa-chart-line"></i>Data Analytics</div>
+<div class="card"><i class="fas fa-brain"></i>Artificial Intelligence</div>
+<div class="card"><i class="fas fa-database"></i>EDA</div>
+<div class="card"><i class="fas fa-project-diagram"></i>Pandas / NumPy / Sklearn</div>
+<div class="card"><i class="fab fa-git-alt"></i>Git / GitHub</div>
+<div class="card"><i class="fas fa-network-wired"></i>DSA</div>
+<div class="card"><i class="fas fa-server"></i>Networking</div>
+<div class="card"><i class="fas fa-layer-group"></i>Deep Learning</div>
+</div>
+</section>
 
-  <!-- Projects -->
-  <section id="projects">
-    <h2 style="text-align:center;">Projects</h2>
-    <div class="projects">
-      <div class="card">
-        <h3>Embedded AI for Websites (Aug 2025 – Present)</h3>
-        <p>Designed and deployed lightweight AI models for real-time website interaction. Optimized runtime performance and scalability.</p>
-      </div>
-      <div class="card">
-        <h3>Movie Recommendation System (Aug 2025)</h3>
-        <p>Built a recommendation engine using collaborative filtering & content-based methods. Increased recommendation accuracy by ~20%.</p>
-        <a class="btn" href="https://github.com/hammidbinaejaz/movie-recommended-system" target="_blank">GitHub Repo</a>
-      </div>
-      <div class="card">
-        <h3>IPL Win Predictor (May 2024)</h3>
-        <p>Developed predictive model on historical IPL datasets using Python, Pandas, Scikit-Learn. Achieved ~85% accuracy.</p>
-        <a class="btn" href="https://github.com/hammidbinaejaz/IPL-Win-Predictor" target="_blank">GitHub Repo</a>
-      </div>
-    </div>
-  </section>
+<!-- Projects -->
+<section id="projects">
+<h2>Projects</h2>
+<div class="grid">
+<div class="card"><h3>Embedded AI for Websites</h3><p>Lightweight AI models for real-time website interaction.</p></div>
+<div class="card"><h3>Movie Recommendation System</h3><p>Collaborative filtering & content-based engine.</p><a class="btn" href="https://github.com/hammidbinaejaz/movie-recommended-system" target="_blank">GitHub Repo</a></div>
+<div class="card"><h3>IPL Win Predictor</h3><p>Predictive model on IPL datasets with ~85% accuracy.</p><a class="btn" href="https://github.com/hammidbinaejaz/IPL-Win-Predictor" target="_blank">GitHub Repo</a></div>
+</div>
+</section>
 
-  <!-- Certificates -->
-  <section id="certificates">
-    <h2 style="text-align:center;">Certificates</h2>
-    <div class="certificates">
-      <div class="card">
-        <h3>Artificial Intelligence Fundamentals – IBM | Aug 2025</h3>
-        <p>
-          <a class="btn" href="assets/IBMDesign20250820-28-p0i2bg.pdf" download>Download PDF</a> | 
-          <a class="btn" href="https://www.credly.com/badges/e67bc372-cab4-4de3-a68a-61d09d8e537b" target="_blank">Verify</a>
-        </p>
-      </div>
-      <div class="card">
-        <h3>Data Structures & Algorithms – Infosys Springboard</h3>
-        <p><a class="btn" href="assets/DSA_infosys.pdf" download>Download PDF</a></p>
-      </div>
-      <div class="card">
-        <h3>Advanced DSA – Infosys Springboard</h3>
-        <p><a class="btn" href="assets/Advanced_DSA.pdf" download>Download PDF</a></p>
-      </div>
-      <div class="card">
-        <h3>Artificial Intelligence – Infosys Springboard</h3>
-        <p><a class="btn" href="assets/AI_infosys.pdf" download>Download PDF</a></p>
-      </div>
-      <div class="card">
-        <h3>Querying SQL Databases – Infosys Springboard</h3>
-        <p><a class="btn" href="assets/SQL_DBMS.pdf" download>Download PDF</a></p>
-      </div>
-    </div>
-  </section>
+<!-- Certificates -->
+<section id="certificates">
+<h2>Certificates</h2>
+<div class="grid">
+<div class="card"><h3>AI Fundamentals – IBM</h3><p><a class="btn" href="assets/IBMDesign20250820-28-p0i2bg.pdf" download>Download</a></p></div>
+<div class="card"><h3>Data Structures – Infosys</h3></div>
+<div class="card"><h3>Advanced DSA – Infosys</h3></div>
+<div class="card"><h3>Artificial Intelligence – Infosys</h3></div>
+<div class="card"><h3>Querying SQL – Infosys</h3></div>
+</div>
+</section>
 
-  <!-- Hobbies -->
-  <section id="hobbies">
-    <h2 style="text-align:center;">Hobbies</h2>
-    <div class="hobbies">
-      <div class="card"><i class="fas fa-utensils"></i>Cooking</div>
-      <div class="card"><i class="fas fa-book"></i>Reading Books</div>
-      <div class="card"><i class="fas fa-mountain"></i>Trekking</div>
-    </div>
-  </section>
+<!-- Hobbies -->
+<section id="hobbies">
+<h2>Hobbies</h2>
+<div class="grid">
+<div class="card"><i class="fas fa-utensils"></i>Cooking</div>
+<div class="card"><i class="fas fa-mountain"></i>Trekking</div>
+<div class="card"><i class="fas fa-gamepad"></i>Sudoku</div>
+<div class="card"><i class="fas fa-pen-nib"></i>Writing Poems</div>
+</div>
+</section>
 
-  <!-- Contact -->
-  <section id="contact">
-    <h2 style="text-align:center;">Contact Me</h2>
-    <div class="contact">
-      <div class="card">
-        <p>Email: <a href="mailto:hammidbinaejaz@gmail.com">hammidbinaejaz@gmail.com</a></p>
-        <p>Phone: +91 9622016339</p>
-        <p>Location: Bangalore, India</p>
-        <a class="btn" href="assets/Resume.pdf" download>Download Resume</a>
-      </div>
-    </div>
-  </section>
+<!-- Me Core -->
+<section id="me-core">
+<h2>Me Core</h2>
+<div class="book-grid">
+<div class="book-card"><h3>Atomic Habits</h3><p>James Clear</p></div>
+<div class="book-card"><h3>Do Your Work</h3><p>Steven Pressfield</p></div>
+<div class="book-card"><h3>Why We Sleep</h3><p>Matthew Walker</p></div>
+<div class="book-card"><h3>The Subtle Art of Not Giving a F*ck</h3><p>Mark Manson</p></div>
+<div class="book-card"><h3>The Brain: The Story of You</h3><p>David Eagleman</p></div>
+<div class="book-card"><h3>Pir-e-Kamil</h3><p>Umera Ahmed</p></div>
+<div class="book-card"><h3>The Happiness Advantage</h3><p>Shawn Achor</p></div>
+<div class="book-card"><h3>The Courage to Be Disliked</h3><p>Ichiro Kishimi & Fumitake Koga</p></div>
+</div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+<h2>Contact</h2>
+<div class="grid">
+<div class="card">
+<p>Email: <a href="mailto:hammidbinaejaz@gmail.com">hammidbinaejaz@gmail.com</a></p>
+<p>Phone: +91 9622016339</p>
+<p>Location: Bangalore, India</p>
+<a class="btn" href="assets/Resume.pdf" download>Download Resume</a>
+</div>
+</div>
+</section>
 
 </div>
 
+<footer>© 2025 Hammid Bin Aejaz</footer>
+
 <script>
-  // Dark/light toggle
-  function toggleTheme() { document.body.classList.toggle('dark'); }
+// Dark/light toggle
+document.getElementById('themeToggle').addEventListener('click', ()=>document.body.classList.toggle('dark'));
 
-  // Scroll reveal
-  const sections = document.querySelectorAll('section');
-  const observer = new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){ entry.target.classList.add('visible'); }
-    });
-  }, {threshold:0.1});
-  sections.forEach(sec=>observer.observe(sec));
+// Scroll fade-in
+const sections = document.querySelectorAll('section');
+const observer = new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});
+sections.forEach(sec=>observer.observe(sec));
+
+// Fade-in Me Core books
+const meCoreCards = document.querySelectorAll('#me-core .book-card');
+const observerCore = new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting)entry.target.classList.add('visible');});},{threshold:0.1});
+meCoreCards.forEach(card=>observerCore.observe(card));
 </script>
-
 </body>
 </html>

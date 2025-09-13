@@ -10,6 +10,7 @@
       --text-color: #1f2937;
       --card-bg: #fff;
       --accent: #2563eb;
+      --accent-gradient: linear-gradient(45deg,#2563eb,#3b82f6);
     }
 
     [data-theme="dark"] {
@@ -17,6 +18,7 @@
       --text-color: #f9fafb;
       --card-bg: #1f2937;
       --accent: #3b82f6;
+      --accent-gradient: linear-gradient(45deg,#3b82f6,#2563eb);
     }
 
     body {
@@ -35,32 +37,55 @@
     nav a {
       margin:0 1rem; text-decoration:none; color:var(--text-color);
       font-weight:500;
-      transition: color 0.2s;
+      transition: color 0.3s;
     }
     nav a:hover { color: var(--accent); }
 
-    button, .theme-toggle {
-      background: var(--accent); color:white; padding:0.5rem 1rem;
-      border:none; border-radius:9999px; cursor:pointer; font-size:1rem;
-      transition: background 0.2s;
+    .theme-toggle {
+      background: var(--accent-gradient);
+      border:none; border-radius:9999px; padding:0.5rem 1rem; color:white;
+      cursor:pointer; font-weight:600;
+      transition: all 0.3s;
     }
-    button:hover, .theme-toggle:hover { background:#1e40af; }
+    .theme-toggle:hover { opacity:0.8; }
 
-    section { padding:4rem 2rem; max-width:900px; margin:auto; }
+    section { padding:4rem 2rem; max-width:900px; margin:auto; opacity:0; transform: translateY(20px); transition: all 0.6s ease-out; }
+    section.visible { opacity:1; transform: translateY(0); }
+
     h1,h2,h3 { margin-bottom:1rem; }
     .hero p { color:#4b5563; margin-bottom:1rem; }
 
+    .profile-photo {
+      width:150px; height:150px; border-radius:50%;
+      border:3px solid var(--accent); box-shadow:0 4px 15px rgba(0,0,0,0.2);
+      display:block; margin-bottom:1rem;
+    }
+
     .projects, .certificates { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.5rem; }
+
     .card {
       background: var(--card-bg); border-radius:1rem; padding:1.5rem;
-      box-shadow:0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow:0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
     }
-    .card:hover { transform: translateY(-5px); box-shadow:0 8px 16px rgba(0,0,0,0.2); }
-    .card img { width:100%; border-radius:0.75rem; margin-bottom:1rem; }
+    .card:hover { transform: translateY(-6px); box-shadow:0 10px 20px rgba(0,0,0,0.2); }
+    .card a {
+      display:inline-block; margin-top:0.5rem; color:var(--accent); font-weight:500; text-decoration:none;
+      transition: all 0.3s;
+    }
+    .card a:hover { text-decoration:underline; }
+
+    button, .btn {
+      background: var(--accent-gradient); color:white; padding:0.6rem 1.2rem; border:none;
+      border-radius:9999px; cursor:pointer; font-weight:600; margin-top:0.5rem;
+      transition: all 0.3s;
+    }
+    button:hover, .btn:hover { opacity:0.85; }
 
     footer { text-align:center; padding:1rem; background:#e5e7eb; margin-top:2rem; }
     .socials a { margin:0 0.5rem; color:var(--text-color); text-decoration:none; font-size:1.25rem; }
     .socials a:hover { color: var(--accent); }
+
   </style>
 </head>
 <body data-theme="light">
@@ -77,13 +102,14 @@
 </header>
 
 <section class="hero" id="about">
+  <img src="assets/myphoto.jpg" alt="Hammid Bin Aejaz" class="profile-photo">
   <h1>Hi, I’m Hammid 👋</h1>
   <p>B.E. Computer Science (AI & ML) | 2023 – 2027</p>
   <p>
     <strong>Programming:</strong> Python, Java, C <br>
     <strong>Data & AI:</strong> ML, AI, Data Analytics, EDA <br>
     <strong>Tools:</strong> Pandas, NumPy, Scikit-Learn, Git, Jupyter <br>
-    <strong>CS Core:</strong> Data Structures & Algorithms <br>
+    <strong>CS Core:</strong> DSA <br>
     <strong>Interests:</strong> Networking, Applied AI, ML, Deep Learning
   </p>
 </section>
@@ -93,21 +119,18 @@
   <div class="projects">
     <div class="card">
       <h3>Embedded AI for Websites (Aug 2025 – Present)</h3>
-      <img src="images/project1.png" alt="Embedded AI Screenshot">
       <p>Designed and deployed lightweight AI models for real-time website interaction. Improved scalability and deployment efficiency.</p>
     </div>
 
     <div class="card">
       <h3>Movie Recommendation System (Aug 2025)</h3>
-      <img src="images/project2.png" alt="Movie Recommendation Screenshot">
       <p>Built and optimized a recommendation engine using collaborative filtering & content-based methods. Accuracy improved by ~20%.</p>
       <a href="https://github.com/hammidbinaejaz/movie-recommended-system" target="_blank">GitHub Repo</a>
     </div>
 
     <div class="card">
       <h3>IPL Win Predictor (May 2024)</h3>
-      <img src="images/project3.png" alt="IPL Win Predictor Screenshot">
-      <p>Developed and trained a predictive model on historical IPL datasets using Python, Pandas, and Scikit-Learn. Achieved ~85% accuracy.</p>
+      <p>Developed a predictive model on historical IPL datasets using Python, Pandas, and Scikit-Learn. Achieved ~85% accuracy.</p>
       <a href="https://github.com/hammidbinaejaz/IPL-Win-Predictor" target="_blank">GitHub Repo</a>
     </div>
   </div>
@@ -128,7 +151,7 @@
 
 <section id="contact">
   <h2>Contact</h2>
-  <p>Email: hammidbinaejaz@gmail.com | Phone: +91 9622016339 | Location: Bangalore</p>
+  <p>Email: hammidbinaejaz@gmail.com | Phone: +91 9622016339 | Bangalore</p>
   <div class="socials">
     <a href="https://github.com/hammidbinaejaz" target="_blank">GitHub</a>
   </div>
@@ -150,6 +173,15 @@
       body.setAttribute('data-theme','light');
       toggle.textContent = '🌙';
     }
+  });
+
+  // Scroll fade-in animation
+  const sections = document.querySelectorAll('section');
+  window.addEventListener('scroll', () => {
+    sections.forEach(sec => {
+      const top = sec.getBoundingClientRect().top;
+      if(top < window.innerHeight * 0.85) sec.classList.add('visible');
+    });
   });
 </script>
 

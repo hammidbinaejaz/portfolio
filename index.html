@@ -5,163 +5,153 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hammid Bin Aejaz - Portfolio</title>
   <style>
+    :root {
+      --bg-color: #f9fafb;
+      --text-color: #1f2937;
+      --card-bg: #fff;
+      --accent: #2563eb;
+    }
+
+    [data-theme="dark"] {
+      --bg-color: #111827;
+      --text-color: #f9fafb;
+      --card-bg: #1f2937;
+      --accent: #3b82f6;
+    }
+
     body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: #f9fafb;
-      color: #1f2937;
+      margin:0; font-family:'Poppins',sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      scroll-behavior: smooth;
     }
+
     header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      background: #fff;
-      position: sticky;
-      top: 0;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      display:flex; justify-content:space-between; align-items:center;
+      padding:1rem 2rem; background: var(--card-bg);
+      box-shadow:0 2px 6px rgba(0,0,0,0.1); position:sticky; top:0; z-index:10;
     }
+
     nav a {
-      margin: 0 1rem;
-      text-decoration: none;
-      color: #374151;
-      font-weight: 500;
+      margin:0 1rem; text-decoration:none; color:var(--text-color);
+      font-weight:500;
+      transition: color 0.2s;
     }
-    nav a:hover {
-      color: #2563eb;
+    nav a:hover { color: var(--accent); }
+
+    button, .theme-toggle {
+      background: var(--accent); color:white; padding:0.5rem 1rem;
+      border:none; border-radius:9999px; cursor:pointer; font-size:1rem;
+      transition: background 0.2s;
     }
-    section {
-      padding: 4rem 2rem;
-      max-width: 900px;
-      margin: auto;
-      text-align: center;
-    }
-    .hero {
-      background: linear-gradient(to bottom, #f9fafb, #e5e7eb);
-      padding: 6rem 2rem;
-    }
-    .hero h1 {
-      font-size: 2.5rem;
-      font-weight: 800;
-      margin-bottom: 1rem;
-    }
-    .hero p {
-      color: #4b5563;
-      font-size: 1.1rem;
-      margin-bottom: 2rem;
-    }
-    button {
-      background: #2563eb;
-      color: white;
-      padding: 0.75rem 1.5rem;
-      border: none;
-      border-radius: 9999px;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #1e40af;
-    }
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-    }
+    button:hover, .theme-toggle:hover { background:#1e40af; }
+
+    section { padding:4rem 2rem; max-width:900px; margin:auto; }
+    h1,h2,h3 { margin-bottom:1rem; }
+    .hero p { color:#4b5563; margin-bottom:1rem; }
+
+    .projects, .certificates { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.5rem; }
     .card {
-      background: #fff;
-      border-radius: 1rem;
-      padding: 1.5rem;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      text-align: left;
+      background: var(--card-bg); border-radius:1rem; padding:1.5rem;
+      box-shadow:0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s;
     }
-    .card h3 {
-      margin-top: 0;
-    }
-    form input, form textarea {
-      width: 100%;
-      padding: 0.75rem;
-      margin-bottom: 1rem;
-      border: 1px solid #d1d5db;
-      border-radius: 0.75rem;
-      font-size: 1rem;
-    }
-    form button {
-      width: 100%;
-    }
-    .socials a {
-      margin: 0 0.5rem;
-      color: #374151;
-      text-decoration: none;
-      font-size: 1.25rem;
-    }
-    .socials a:hover {
-      color: #2563eb;
-    }
-    footer {
-      background: #e5e7eb;
-      text-align: center;
-      padding: 1rem;
-      margin-top: 2rem;
-    }
+    .card:hover { transform: translateY(-5px); box-shadow:0 8px 16px rgba(0,0,0,0.2); }
+    .card img { width:100%; border-radius:0.75rem; margin-bottom:1rem; }
+
+    footer { text-align:center; padding:1rem; background:#e5e7eb; margin-top:2rem; }
+    .socials a { margin:0 0.5rem; color:var(--text-color); text-decoration:none; font-size:1.25rem; }
+    .socials a:hover { color: var(--accent); }
   </style>
 </head>
-<body>
-  <header>
-    <h2>Hammid Bin Aejaz</h2>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+<body data-theme="light">
 
-  <section class="hero">
-    <h1>Hi, I’m Hammid 👋</h1>
-    <p>Engineering Student | AI & ML Enthusiast | Passionate about building projects that make an impact.</p>
-    <button>Let’s Talk</button>
-  </section>
+<header>
+  <h2>Hammid Bin Aejaz</h2>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#certificates">Certificates</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <button class="theme-toggle">🌙</button>
+</header>
 
-  <section id="about">
-    <h2>About Me</h2>
-    <p>I’m a Computer Science student specializing in AI & ML. I enjoy solving problems, working on real-world projects, and learning new technologies. My focus is on practical, impactful solutions.</p>
-  </section>
+<section class="hero" id="about">
+  <h1>Hi, I’m Hammid 👋</h1>
+  <p>B.E. Computer Science (AI & ML) | 2023 – 2027</p>
+  <p>
+    <strong>Programming:</strong> Python, Java, C <br>
+    <strong>Data & AI:</strong> ML, AI, Data Analytics, EDA <br>
+    <strong>Tools:</strong> Pandas, NumPy, Scikit-Learn, Git, Jupyter <br>
+    <strong>CS Core:</strong> Data Structures & Algorithms <br>
+    <strong>Interests:</strong> Networking, Applied AI, ML, Deep Learning
+  </p>
+</section>
 
-  <section id="projects">
-    <h2>Projects</h2>
-    <div class="projects">
-      <div class="card">
-        <h3>Project 1</h3>
-        <p>A short description about this project and the technologies used.</p>
-      </div>
-      <div class="card">
-        <h3>Project 2</h3>
-        <p>A short description about this project and the technologies used.</p>
-      </div>
-      <div class="card">
-        <h3>Project 3</h3>
-        <p>A short description about this project and the technologies used.</p>
-      </div>
+<section id="projects">
+  <h2>Projects</h2>
+  <div class="projects">
+    <div class="card">
+      <h3>Embedded AI for Websites (Aug 2025 – Present)</h3>
+      <img src="images/project1.png" alt="Embedded AI Screenshot">
+      <p>Designed and deployed lightweight AI models for real-time website interaction. Improved scalability and deployment efficiency.</p>
     </div>
-  </section>
 
-  <section id="contact">
-    <h2>Let’s Talk</h2>
-    <p>Whether you have a project idea, want to collaborate, or just say hi — my inbox is always open.</p>
-    <form>
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Your Email" required>
-      <textarea placeholder="Your Message" rows="5" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
-    <div class="socials">
-      <a href="#">✉️</a>
-      <a href="#">🐙</a>
-      <a href="#">💼</a>
+    <div class="card">
+      <h3>Movie Recommendation System (Aug 2025)</h3>
+      <img src="images/project2.png" alt="Movie Recommendation Screenshot">
+      <p>Built and optimized a recommendation engine using collaborative filtering & content-based methods. Accuracy improved by ~20%.</p>
+      <a href="https://github.com/hammidbinaejaz/movie-recommended-system" target="_blank">GitHub Repo</a>
     </div>
-  </section>
 
-  <footer>
-    <p>© 2025 Hammid Bin Aejaz. All rights reserved.</p>
-  </footer>
+    <div class="card">
+      <h3>IPL Win Predictor (May 2024)</h3>
+      <img src="images/project3.png" alt="IPL Win Predictor Screenshot">
+      <p>Developed and trained a predictive model on historical IPL datasets using Python, Pandas, and Scikit-Learn. Achieved ~85% accuracy.</p>
+      <a href="https://github.com/hammidbinaejaz/IPL-Win-Predictor" target="_blank">GitHub Repo</a>
+    </div>
+  </div>
+</section>
+
+<section id="certificates">
+  <h2>Certificates</h2>
+  <div class="certificates">
+    <div class="card">
+      <h3>Artificial Intelligence Fundamentals – IBM (Virtual) | Aug 2025</h3>
+      <p>
+        <a href="assets/certificate1.pdf" download>Download PDF</a> | 
+        <a href="https://www.credly.com/badges/e67bc372-cab4-4de3-a68a-61d09d8e537b" target="_blank">Verify Certificate</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <p>Email: hammidbinaejaz@gmail.com | Phone: +91 9622016339 | Location: Bangalore</p>
+  <div class="socials">
+    <a href="https://github.com/hammidbinaejaz" target="_blank">GitHub</a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Hammid Bin Aejaz. All rights reserved.</p>
+</footer>
+
+<script>
+  // Dark / Light toggle
+  const toggle = document.querySelector('.theme-toggle');
+  const body = document.body;
+  toggle.addEventListener('click', () => {
+    if(body.getAttribute('data-theme') === 'light') {
+      body.setAttribute('data-theme','dark');
+      toggle.textContent = '☀️';
+    } else {
+      body.setAttribute('data-theme','light');
+      toggle.textContent = '🌙';
+    }
+  });
+</script>
+
 </body>
 </html>

@@ -1,0 +1,13 @@
+# Ignore all PDFs in the assets folder
+assets/*.pdf
+
+# Ignore other common unwanted files
+.DS_Store
+Thumbs.db
+*.log
+
+# Node modules (if using JS/React)
+node_modules/
+
+# Environment files
+.env

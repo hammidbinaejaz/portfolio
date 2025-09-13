@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hammid Bin Aejaz - Portfolio</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #f9fafb;
+      color: #1f2937;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: #fff;
+      position: sticky;
+      top: 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    nav a {
+      margin: 0 1rem;
+      text-decoration: none;
+      color: #374151;
+      font-weight: 500;
+    }
+    nav a:hover {
+      color: #2563eb;
+    }
+    section {
+      padding: 4rem 2rem;
+      max-width: 900px;
+      margin: auto;
+      text-align: center;
+    }
+    .hero {
+      background: linear-gradient(to bottom, #f9fafb, #e5e7eb);
+      padding: 6rem 2rem;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      color: #4b5563;
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+    button {
+      background: #2563eb;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 9999px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #1e40af;
+    }
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: #fff;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+    .card h3 {
+      margin-top: 0;
+    }
+    form input, form textarea {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: 1px solid #d1d5db;
+      border-radius: 0.75rem;
+      font-size: 1rem;
+    }
+    form button {
+      width: 100%;
+    }
+    .socials a {
+      margin: 0 0.5rem;
+      color: #374151;
+      text-decoration: none;
+      font-size: 1.25rem;
+    }
+    .socials a:hover {
+      color: #2563eb;
+    }
+    footer {
+      background: #e5e7eb;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>Hammid Bin Aejaz</h2>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Hi, I’m Hammid 👋</h1>
+    <p>Engineering Student | AI & ML Enthusiast | Passionate about building projects that make an impact.</p>
+    <button>Let’s Talk</button>
+  </section>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>I’m a Computer Science student specializing in AI & ML. I enjoy solving problems, working on real-world projects, and learning new technologies. My focus is on practical, impactful solutions.</p>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="projects">
+      <div class="card">
+        <h3>Project 1</h3>
+        <p>A short description about this project and the technologies used.</p>
+      </div>
+      <div class="card">
+        <h3>Project 2</h3>
+        <p>A short description about this project and the technologies used.</p>
+      </div>
+      <div class="card">
+        <h3>Project 3</h3>
+        <p>A short description about this project and the technologies used.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Let’s Talk</h2>
+    <p>Whether you have a project idea, want to collaborate, or just say hi — my inbox is always open.</p>
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+    <div class="socials">
+      <a href="#">✉️</a>
+      <a href="#">🐙</a>
+      <a href="#">💼</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Hammid Bin Aejaz. All rights reserved.</p>
+  </footer>
+</body>
+</html>

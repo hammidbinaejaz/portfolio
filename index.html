@@ -47,12 +47,35 @@ h2 { text-align:center; color:var(--accent); font-size:2rem; margin-bottom:40px;
 body.dark .card { background:#1e293b; }
 .card:hover { transform:translateY(-5px) scale(1.03); box-shadow:0 10px 25px rgba(0,0,0,0.15); }
 .card i { font-size:2rem; margin-bottom:10px; color:var(--accent); }
-.skill-tooltip {
-  position:absolute; bottom:110%; left:50%; transform:translateX(-50%);
-  background:var(--accent); color:#fff; padding:8px 14px; border-radius:10px;
-  font-size:0.95rem; opacity:0; pointer-events:none; transition: all 0.4s ease;
-  white-space:nowrap; z-index:50;
+
+/* Tooltip */
+.tooltip {
+  position:absolute;
+  background:var(--accent);
+  color:#fff;
+  padding:8px 14px;
+  border-radius:10px;
+  font-size:0.95rem;
+  white-space:nowrap;
+  opacity:0;
+  pointer-events:none;
+  transition:all 0.3s ease;
+  text-align:center;
+  z-index:50;
+  max-width:220px;
 }
+.tooltip::after {
+  content:'';
+  position:absolute;
+  border-width:6px;
+  border-style:solid;
+  border-color:var(--accent) transparent transparent transparent;
+  left:50%;
+  transform:translateX(-50%);
+}
+
+.skill-tooltip { display:none; } /* Old tooltip hidden */
+
 /* Books & Hobbies */
 .book-row, .grid.hobbies { display:flex; justify-content:center; flex-wrap:wrap; gap:15px; overflow-x:auto; padding-bottom:10px; }
 .book-card, .card.hobby-card {
@@ -69,16 +92,18 @@ body.dark .book-card, body.dark .card.hobby-card { background:#1e293b; color:#f1
 .book-card p, .card.hobby-card p { font-size:0.85rem; color:#64748b; }
 body.dark .book-card p, body.dark .card.hobby-card p { color:#cbd5e1; }
 footer { text-align:center; padding:2rem; font-size:0.9rem; color:#94a3b8; }
-@media(max-width:600px){ nav{ flex-direction:column; gap:10px; } .book-row{overflow-x:auto;} }
 
-/* ✅ Mobile improvements */
-@media (max-width: 600px) {
-  .hero h1 { font-size: 1.8rem; }
-  .hero p.intro { font-size: 0.95rem; padding: 0 10px; }
-  .profile-photo { width: 120px; height: 120px; }
+@media(max-width:600px){ 
+  nav{ flex-direction:column; gap:10px; } 
+  .book-row{overflow-x:auto;} 
+  .hero h1 { font-size:1.8rem; }
+  .hero p.intro { font-size:0.95rem; padding:0 10px; }
+  .profile-photo { width:120px; height:120px; }
   .grid { grid-template-columns: 1fr; }
-  .card { padding: 15px; }
-  .btn { padding: 8px 14px; font-size: 0.9rem; }
+  .card { padding:15px; }
+  .btn { padding:8px 14px; font-size:0.9rem; }
+  .tooltip { max-width:160px; font-size:0.85rem; }
+  .tooltip::after { border-width:5px; }
 }
 </style>
 </head>
@@ -131,21 +156,17 @@ footer { text-align:center; padding:2rem; font-size:0.9rem; color:#94a3b8; }
 </section>
 
 <!-- Projects -->
-<!-- Projects -->
 <section id="projects">
 <h2>Projects</h2>
 <div class="grid">
   <div class="card"><h3>Embedded AI for Websites</h3><p>Lightweight AI models for real-time website interaction.</p></div>
   <div class="card"><h3>Movie Recommendation System</h3><p>Collaborative filtering & content-based engine.</p><a class="btn" href="https://github.com/hammidbinaejaz/movie-recommended-system" target="_blank">GitHub Repo</a></div>
   <div class="card"><h3>IPL Win Predictor</h3><p>Predictive model on IPL datasets with ~85% accuracy.</p><a class="btn" href="https://github.com/hammidbinaejaz/IPL-Win-Predictor" target="_blank">GitHub Repo</a></div>
-
-  <!-- New Projects -->
   <div class="card">
     <h3>4th Sem SVIT Notes</h3>
     <p>Collection of study notes and resources for 4th semester.</p>
     <a class="btn" href="https://hammidbinaejaz.github.io/4TH-SEM-SVIT-NOTES/" target="_blank">View Project</a>
   </div>
-
   <div class="card">
     <h3>3rd Sem SVIT Notes</h3>
     <p>Collection of study notes and resources for 3rd semester.</p>
@@ -221,15 +242,30 @@ const sections = document.querySelectorAll('section, .book-card, .hobby-card');
 const observer = new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});
 sections.forEach(sec=>observer.observe(sec));
 
-// Skill tooltips
+// Smart tooltips
 const skills = document.querySelectorAll('#skillsGrid .card');
 skills.forEach(skill=>{
   const tooltip = document.createElement('div');
-  tooltip.className='skill-tooltip';
+  tooltip.className='tooltip';
   tooltip.innerText = skill.dataset.info;
-  skill.appendChild(tooltip);
-  skill.addEventListener('mouseenter', ()=>{ tooltip.style.opacity='1'; tooltip.style.transform='translateX(-50%) translateY(-10px)'; });
-  skill.addEventListener('mouseleave', ()=>{ tooltip.style.opacity='0'; tooltip.style.transform='translateX(-50%) translateY(0)'; });
+  document.body.appendChild(tooltip);
+
+  skill.addEventListener('mouseenter', e=>{
+    const rect = skill.getBoundingClientRect();
+    tooltip.style.opacity = '1';
+
+    let top = rect.top - tooltip.offsetHeight - 10;
+    let left = rect.left + rect.width/2 - tooltip.offsetWidth/2;
+
+    if(top < 0) top = rect.bottom + 10; // flip below
+    if(left < 5) left = 5;
+    if(left + tooltip.offsetWidth > window.innerWidth - 5) left = window.innerWidth - tooltip.offsetWidth - 5;
+
+    tooltip.style.top = `${top + window.scrollY}px`;
+    tooltip.style.left = `${left + window.scrollX}px`;
+  });
+
+  skill.addEventListener('mouseleave', ()=>{ tooltip.style.opacity='0'; });
 });
 </script>
 

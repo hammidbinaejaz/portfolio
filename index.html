@@ -11,10 +11,12 @@
   --bg-light:#fdfdfd; --bg-dark:#0f172a;
   --text-light:#1e293b; --text-dark:#f1f5f9;
   --accent:#3b82f6;
+  --card-radius:15px;
 }
 * { box-sizing:border-box; margin:0; padding:0; }
 body { font-family:'Inter',sans-serif; background:var(--bg-light); color:var(--text-light); line-height:1.6; scroll-behavior:smooth; transition:0.4s; }
 body.dark { background:var(--bg-dark); color:var(--text-dark); }
+
 nav {
   position:fixed; top:0; width:100%; display:flex; justify-content:center; gap:25px;
   padding:15px 0; background:rgba(255,255,255,0.85); backdrop-filter:blur(10px);
@@ -24,6 +26,7 @@ body.dark nav { background:rgba(15,23,42,0.85); }
 nav a { color:var(--text-light); text-decoration:none; transition:0.3s; }
 body.dark nav a { color:var(--text-dark); }
 nav a:hover { color:var(--accent); }
+
 .toggle-btn {
   position:fixed; top:15px; right:15px; width:45px; height:45px;
   border-radius:50%; background:var(--accent); color:#fff;
@@ -31,50 +34,28 @@ nav a:hover { color:var(--accent); }
   transition:0.3s;
 }
 .toggle-btn:hover { transform: scale(1.1) rotate(10deg); }
+
 .container { width:90%; max-width:1100px; margin:auto; padding-top:100px; }
 section { margin-bottom:80px; opacity:0; transform:translateY(30px); transition: all 0.8s ease-out; }
 section.visible { opacity:1; transform:translateY(0); }
+
 h2 { text-align:center; color:var(--accent); font-size:2rem; margin-bottom:40px; font-weight:600; }
 .hero { text-align:center; padding:80px 20px; }
 .profile-photo { width:160px; height:160px; border-radius:50%; border:4px solid var(--accent); object-fit:cover; margin-bottom:20px; box-shadow:0 6px 20px rgba(0,0,0,0.12); transition: transform 0.4s, box-shadow 0.4s; }
 .profile-photo:hover { transform:scale(1.08) rotate(1deg); box-shadow:0 12px 30px rgba(0,0,0,0.2); }
+
 .hero h1 { font-size:2.5rem; margin-bottom:10px; font-weight:700; letter-spacing:1px; }
 .hero p.intro { font-size:1.1rem; max-width:650px; margin:auto; margin-bottom:20px; }
-.btn { display:inline-block; padding:10px 20px; background:var(--accent); color:#fff; border-radius:8px; font-weight:600; transition:0.3s; margin-top:10px; }
+.btn { display:inline-block; padding:10px 20px; background:var(--accent); color:#fff; border-radius:8px; font-weight:600; transition:0.3s; margin-top:10px; text-decoration:none; }
 .btn:hover { background:#2563eb; transform:translateY(-2px); }
+
 .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
-.card { background:#fff; padding:25px; border-radius:15px; text-align:center; box-shadow:0 6px 15px rgba(0,0,0,0.08); transition: transform 0.4s, box-shadow 0.4s; position:relative; cursor:pointer; }
+.card { background:#fff; padding:25px; border-radius:var(--card-radius); text-align:center; box-shadow:0 6px 15px rgba(0,0,0,0.08); transition: transform 0.4s, box-shadow 0.4s; position:relative; cursor:pointer; }
 body.dark .card { background:#1e293b; }
 .card:hover { transform:translateY(-5px) scale(1.03); box-shadow:0 10px 25px rgba(0,0,0,0.15); }
 .card i { font-size:2rem; margin-bottom:10px; color:var(--accent); }
 
-/* Tooltip */
-.tooltip {
-  position:absolute;
-  background:var(--accent);
-  color:#fff;
-  padding:8px 14px;
-  border-radius:10px;
-  font-size:0.95rem;
-  white-space:nowrap;
-  opacity:0;
-  pointer-events:none;
-  transition:all 0.3s ease;
-  text-align:center;
-  z-index:50;
-  max-width:220px;
-}
-.tooltip::after {
-  content:'';
-  position:absolute;
-  border-width:6px;
-  border-style:solid;
-  border-color:var(--accent) transparent transparent transparent;
-  left:50%;
-  transform:translateX(-50%);
-}
-
-.skill-tooltip { display:none; } /* Old tooltip hidden */
+.skill-tooltip { display:none; } /* Remove hover tooltip on mobile for simplicity */
 
 /* Books & Hobbies */
 .book-row, .grid.hobbies { display:flex; justify-content:center; flex-wrap:wrap; gap:15px; overflow-x:auto; padding-bottom:10px; }
@@ -91,19 +72,27 @@ body.dark .book-card, body.dark .card.hobby-card { background:#1e293b; color:#f1
 .book-card h4, .card.hobby-card h4 { font-size:1rem; margin-bottom:4px; font-weight:600; }
 .book-card p, .card.hobby-card p { font-size:0.85rem; color:#64748b; }
 body.dark .book-card p, body.dark .card.hobby-card p { color:#cbd5e1; }
+
 footer { text-align:center; padding:2rem; font-size:0.9rem; color:#94a3b8; }
 
-@media(max-width:600px){ 
-  nav{ flex-direction:column; gap:10px; } 
-  .book-row{overflow-x:auto;} 
-  .hero h1 { font-size:1.8rem; }
-  .hero p.intro { font-size:0.95rem; padding:0 10px; }
+/* ====================== MOBILE IMPROVEMENTS ====================== */
+@media(max-width:800px) {
+  .grid { grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:15px; }
+  .hero h1 { font-size:2rem; }
+  .hero p.intro { font-size:1rem; padding:0 10px; }
   .profile-photo { width:120px; height:120px; }
-  .grid { grid-template-columns: 1fr; }
   .card { padding:15px; }
   .btn { padding:8px 14px; font-size:0.9rem; }
-  .tooltip { max-width:160px; font-size:0.85rem; }
-  .tooltip::after { border-width:5px; }
+  .grid.hobbies, .book-row { justify-content:flex-start; overflow-x:auto; }
+}
+
+/* Small Mobile (<=500px) */
+@media(max-width:500px) {
+  nav { flex-direction:column; gap:10px; }
+  .grid { grid-template-columns:1fr; }
+  .card i { font-size:1.5rem; margin-bottom:6px; }
+  .hero h1 { font-size:1.5rem; }
+  .hero p.intro { font-size:0.9rem; }
 }
 </style>
 </head>
@@ -139,19 +128,19 @@ footer { text-align:center; padding:2rem; font-size:0.9rem; color:#94a3b8; }
 <!-- Skills -->
 <section id="skills">
 <h2>Skills</h2>
-<div class="grid" id="skillsGrid">
-  <div class="card" data-info="Proficient in Python programming, ML frameworks, and data analysis."><i class="fab fa-python"></i>Python</div>
-  <div class="card" data-info="Object-oriented and enterprise-level programming experience."><i class="fab fa-java"></i>Java</div>
-  <div class="card" data-info="Strong foundation in C programming and algorithms."><i class="fas fa-c"></i>C</div>
-  <div class="card" data-info="Build ML models for predictions and classification."><i class="fas fa-robot"></i>Machine Learning</div>
-  <div class="card" data-info="Analyze datasets to extract actionable insights."><i class="fas fa-chart-line"></i>Data Analytics</div>
-  <div class="card" data-info="AI concepts and neural networks understanding."><i class="fas fa-brain"></i>Artificial Intelligence</div>
-  <div class="card" data-info="Exploratory Data Analysis using Python libraries."><i class="fas fa-database"></i>EDA</div>
-  <div class="card" data-info="Data manipulation and modeling with Pandas, NumPy, Sklearn."><i class="fas fa-project-diagram"></i>Pandas / NumPy / Sklearn</div>
-  <div class="card" data-info="Version control and collaboration using Git/GitHub."><i class="fab fa-git-alt"></i>Git / GitHub</div>
-  <div class="card" data-info="Strong Data Structures and Algorithms knowledge."><i class="fas fa-network-wired"></i>DSA</div>
-  <div class="card" data-info="Understanding of computer networks and protocols."><i class="fas fa-server"></i>Networking</div>
-  <div class="card" data-info="Deep learning frameworks, neural networks implementation."><i class="fas fa-layer-group"></i>Deep Learning</div>
+<div class="grid">
+  <div class="card"><i class="fab fa-python"></i><h4>Python</h4><p>ML frameworks & data analysis</p></div>
+  <div class="card"><i class="fab fa-java"></i><h4>Java</h4><p>OOP & enterprise programming</p></div>
+  <div class="card"><i class="fas fa-c"></i><h4>C</h4><p>Algorithms & DSA foundations</p></div>
+  <div class="card"><i class="fas fa-robot"></i><h4>Machine Learning</h4><p>Predictions & classification</p></div>
+  <div class="card"><i class="fas fa-chart-line"></i><h4>Data Analytics</h4><p>Extract insights from data</p></div>
+  <div class="card"><i class="fas fa-brain"></i><h4>AI</h4><p>Neural networks & AI concepts</p></div>
+  <div class="card"><i class="fas fa-database"></i><h4>EDA</h4><p>Data exploration & visualization</p></div>
+  <div class="card"><i class="fas fa-project-diagram"></i><h4>Pandas/NumPy/Sklearn</h4><p>Data manipulation & modeling</p></div>
+  <div class="card"><i class="fab fa-git-alt"></i><h4>Git/GitHub</h4><p>Version control & collaboration</p></div>
+  <div class="card"><i class="fas fa-network-wired"></i><h4>DSA</h4><p>Strong algorithm knowledge</p></div>
+  <div class="card"><i class="fas fa-server"></i><h4>Networking</h4><p>Computer networks & protocols</p></div>
+  <div class="card"><i class="fas fa-layer-group"></i><h4>Deep Learning</h4><p>Neural networks implementation</p></div>
 </div>
 </section>
 
@@ -160,18 +149,10 @@ footer { text-align:center; padding:2rem; font-size:0.9rem; color:#94a3b8; }
 <h2>Projects</h2>
 <div class="grid">
   <div class="card"><h3>Embedded AI for Websites</h3><p>Lightweight AI models for real-time website interaction.</p></div>
-  <div class="card"><h3>Movie Recommendation System</h3><p>Collaborative filtering & content-based engine.</p><a class="btn" href="https://github.com/hammidbinaejaz/movie-recommended-system" target="_blank">GitHub Repo</a></div>
-  <div class="card"><h3>IPL Win Predictor</h3><p>Predictive model on IPL datasets with ~85% accuracy.</p><a class="btn" href="https://github.com/hammidbinaejaz/IPL-Win-Predictor" target="_blank">GitHub Repo</a></div>
-  <div class="card">
-    <h3>4th Sem SVIT Notes</h3>
-    <p>Collection of study notes and resources for 4th semester.</p>
-    <a class="btn" href="https://hammidbinaejaz.github.io/4TH-SEM-SVIT-NOTES/" target="_blank">View Project</a>
-  </div>
-  <div class="card">
-    <h3>3rd Sem SVIT Notes</h3>
-    <p>Collection of study notes and resources for 3rd semester.</p>
-    <a class="btn" href="https://hammidbinaejaz.github.io/3RD-SEM-SVIT-NOTES/" target="_blank">View Project</a>
-  </div>
+  <div class="card"><h3>Movie Recommendation System</h3><p>Collaborative filtering & content-based engine.</p><a class="btn" href="https://github.com/hammidbinaejaz/movie-recommended-system" target="_blank">GitHub</a></div>
+  <div class="card"><h3>IPL Win Predictor</h3><p>Predictive model on IPL datasets with ~85% accuracy.</p><a class="btn" href="https://github.com/hammidbinaejaz/IPL-Win-Predictor" target="_blank">GitHub</a></div>
+  <div class="card"><h3>4th Sem SVIT Notes</h3><p>Collection of study notes and resources for 4th semester.</p><a class="btn" href="https://hammidbinaejaz.github.io/4TH-SEM-SVIT-NOTES/" target="_blank">View</a></div>
+  <div class="card"><h3>3rd Sem SVIT Notes</h3><p>Collection of study notes and resources for 3rd semester.</p><a class="btn" href="https://hammidbinaejaz.github.io/3RD-SEM-SVIT-NOTES/" target="_blank">View</a></div>
 </div>
 </section>
 
@@ -190,7 +171,7 @@ footer { text-align:center; padding:2rem; font-size:0.9rem; color:#94a3b8; }
 <!-- Hobbies -->
 <section id="hobbies">
 <h2>Hobbies</h2>
-<div class="book-row hobbies">
+<div class="grid hobbies">
   <div class="card hobby-card"><i class="fas fa-utensils"></i><h4>Cooking</h4></div>
   <div class="card hobby-card"><i class="fas fa-mountain"></i><h4>Trekking</h4></div>
   <div class="card hobby-card"><i class="fas fa-gamepad"></i><h4>Sudoku</h4></div>
@@ -198,9 +179,9 @@ footer { text-align:center; padding:2rem; font-size:0.9rem; color:#94a3b8; }
 </div>
 </section>
 
-<!-- Me Core -->
+<!-- Books -->
 <section id="books">
-<h2>Learning and Growth</h2>
+<h2>Learning & Growth</h2>
 <div class="book-row">
   <div class="book-card"><h4>Atomic Habits</h4><p>James Clear</p></div>
   <div class="book-card"><h4>Do Your Work</h4><p>Steven Pressfield</p></div>
@@ -241,32 +222,6 @@ document.getElementById('themeToggle').addEventListener('click', ()=>document.bo
 const sections = document.querySelectorAll('section, .book-card, .hobby-card');
 const observer = new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});
 sections.forEach(sec=>observer.observe(sec));
-
-// Smart tooltips
-const skills = document.querySelectorAll('#skillsGrid .card');
-skills.forEach(skill=>{
-  const tooltip = document.createElement('div');
-  tooltip.className='tooltip';
-  tooltip.innerText = skill.dataset.info;
-  document.body.appendChild(tooltip);
-
-  skill.addEventListener('mouseenter', e=>{
-    const rect = skill.getBoundingClientRect();
-    tooltip.style.opacity = '1';
-
-    let top = rect.top - tooltip.offsetHeight - 10;
-    let left = rect.left + rect.width/2 - tooltip.offsetWidth/2;
-
-    if(top < 0) top = rect.bottom + 10; // flip below
-    if(left < 5) left = 5;
-    if(left + tooltip.offsetWidth > window.innerWidth - 5) left = window.innerWidth - tooltip.offsetWidth - 5;
-
-    tooltip.style.top = `${top + window.scrollY}px`;
-    tooltip.style.left = `${left + window.scrollX}px`;
-  });
-
-  skill.addEventListener('mouseleave', ()=>{ tooltip.style.opacity='0'; });
-});
 </script>
 
 </body>

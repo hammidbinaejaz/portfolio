@@ -460,13 +460,38 @@ section.visible, .book-card.visible, .hobby-card.visible, .card.visible { opacit
   font-size: 1.2rem; display: none; z-index: 1000; transition: 0.3s;
 }
 /* Base styles for the skills section */
+/* Skills Section */
 #skills {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 20px;
-  padding: 20px;
-  text-align: center;
+  display: flex;
+  flex-direction: column; /* stack vertically */
+  align-items: center;
+  gap: 12px; /* spacing between skills */
+  padding: 20px 10px;
 }
+
+.skill {
+  font-size: 1.1rem;
+  text-align: center;
+  position: relative;
+  padding-left: 15px;
+}
+
+.skill::before {
+  content: "•"; /* the bullet */
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: bold;
+}
+
+/* Slightly bigger for tablets */
+@media(min-width: 600px) {
+  .skill {
+    font-size: 1.25rem;
+  }
+}
+
+/* Keep vertical on all screens, no grid at all */
 
 /* Style for each skill */
 .skill {

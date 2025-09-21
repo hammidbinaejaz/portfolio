@@ -1,4 +1,4 @@
-/* ====================== ROOT VARIABLES ====================== */
+/* ======================== Root Variables ======================== */
 :root {
   --bg-light: #fdfdfd;
   --bg-dark: #0f172a;
@@ -8,7 +8,7 @@
   --card-radius: 15px;
 }
 
-/* ====================== GLOBAL STYLES ====================== */
+/* ======================== Global Styles ======================== */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -29,7 +29,7 @@ body.dark {
   color: var(--text-dark);
 }
 
-/* ====================== NAVIGATION ====================== */
+/* ======================== Navigation ======================== */
 nav {
   position: fixed;
   top: 0;
@@ -59,11 +59,12 @@ body.dark nav a {
   color: var(--text-dark);
 }
 
-nav a:hover {
+nav a:hover,
+nav a.active {
   color: var(--accent);
 }
 
-/* ====================== THEME TOGGLE ====================== */
+/* ======================== Toggle Button ======================== */
 .toggle-btn {
   position: fixed;
   top: 15px;
@@ -86,7 +87,7 @@ nav a:hover {
   transform: scale(1.1) rotate(10deg);
 }
 
-/* ====================== CONTAINER & SECTIONS ====================== */
+/* ======================== Container ======================== */
 .container {
   width: 90%;
   max-width: 1100px;
@@ -114,7 +115,7 @@ h2 {
   font-weight: 600;
 }
 
-/* ====================== HERO / ABOUT ====================== */
+/* ======================== Hero Section ======================== */
 .hero {
   text-align: center;
   padding: 80px 20px;
@@ -167,13 +168,14 @@ h2 {
   transform: translateY(-2px);
 }
 
-/* ====================== CARDS & GRIDS ====================== */
+/* ======================== Grid ======================== */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
 }
 
+/* ======================== Card ======================== */
 .card {
   background: #fff;
   padding: 25px;
@@ -200,13 +202,7 @@ body.dark .card {
   color: var(--accent);
 }
 
-/* ====================== SKILLS ====================== */
-.skill-card {
-  padding: 20px;
-  text-align: center;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
+/* ======================== Skill Cards ======================== */
 .skill-card .icon-bg {
   width: 70px;
   height: 70px;
@@ -230,7 +226,7 @@ body.dark .card {
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Skill colors */
+/* Individual skill colors */
 .icon-bg.python { background: #306998; }
 .icon-bg.java { background: #f89820; }
 .icon-bg.c { background: #00599c; }
@@ -242,18 +238,18 @@ body.dark .card {
 .icon-bg.git { background: #f05032; }
 .icon-bg.dl { background: #06b6d4; }
 
-/* ====================== BOOKS ====================== */
+/* ======================== Books Section ======================== */
 .book-row {
   display: flex;
-  gap: 20px;
-  overflow-x: auto;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
   padding-bottom: 15px;
-  scroll-behavior: smooth;
 }
 
 .book-card {
   flex: 0 0 auto;
-  min-width: 140px;
+  width: 140px;
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 6px 20px rgba(0,0,0,0.12);
@@ -303,42 +299,7 @@ body.dark .book-author {
   color: #cbd5e1;
 }
 
-/* ====================== HOBBIES ====================== */
-.grid.hobbies { display:flex; justify-content:center; flex-wrap:wrap; gap:15px; overflow-x:auto; padding-bottom:10px; }
-.card.hobby-card {
-  flex:0 0 auto;
-  background:#fff;
-  padding:12px 15px;
-  border-radius:10px;
-  box-shadow:0 4px 12px rgba(0,0,0,0.08);
-  text-align:center;
-  min-width:140px;
-  cursor:default;
-  transition:all 0.5s ease, transform 0.3s ease;
-}
-body.dark .card.hobby-card { background:#1e293b; color:#f1f5f9; box-shadow:0 4px 12px rgba(0,0,0,0.3); }
-.card.hobby-card:hover { transform:translateY(-5px) scale(1.05) rotateZ(1deg); box-shadow:0 8px 20px rgba(0,0,0,0.15); }
-
-/* ====================== CONTACT ====================== */
-#contact .card {
-  max-width: 400px;
-  margin: auto;
-  padding: 20px;
-  text-align: left;
-}
-
-#contact .card p {
-  margin: 8px 0;
-}
-
-#contact .card a {
-  color: var(--accent);
-  text-decoration: none;
-}
-
-#contact .card a:hover { text-decoration: underline; }
-
-/* ====================== FOOTER ====================== */
+/* ======================== Footer ======================== */
 footer {
   text-align: center;
   padding: 2rem;
@@ -346,31 +307,36 @@ footer {
   color: #94a3b8;
 }
 
-footer p {
-  margin-bottom: 8px;
-  font-style: italic;
+/* ======================== Mobile Styles ======================== */
+@media(max-width:800px){
+  .grid { grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 15px; }
+  .hero h1 { font-size: 2rem; }
+  .hero p.intro { font-size: 1rem; padding: 0 10px; }
+  .profile-photo { width: 120px; height: 120px; }
+  .card { padding: 15px; }
+  .btn { padding: 8px 16px; font-size: 0.9rem; }
 }
 
-/* ====================== MOBILE IMPEMENTS ====================== */
-@media(max-width:800px) {
-  .grid { grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:15px; }
-  .hero h1 { font-size:2rem; }
-  .hero p.intro { font-size:1rem; padding:0 10px; }
-  .profile-photo { width:120px; height:120px; }
-  .card { padding:15px; }
-  .btn { padding:8px 14px; font-size:0.9rem; }
-  .grid.hobbies, .book-row { justify-content:flex-start; overflow-x:auto; }
+@media(max-width:500px){
+  nav { flex-direction: column; gap: 10px; padding: 10px 0; }
+  nav a { font-size: 0.9rem; }
+  .hero h1 { font-size: 1.7rem; }
+  .hero p.intro { font-size: 0.9rem; }
+  .profile-photo { width: 100px; height: 100px; }
+  .book-row { flex-direction: column; align-items: center; }
+  .book-card { width: 90%; }
+  .grid { grid-template-columns: 1fr; }
+  .skill-card { width: 100%; margin: auto; }
 }
 
-@media(max-width:500px) {
-  nav { flex-direction:column; gap:10px; }
-  .grid { grid-template-columns:1fr; }
-  .card i { font-size:1.5rem; margin-bottom:6px; }
-  .hero h1 { font-size:1.5rem; }
-  .hero p.intro { font-size:0.9rem; }
-  .book-card img { height:160px; }
-  .book-title { font-size:0.9rem; }
-  .book-author { font-size:0.75rem; }
-  .skill-card .icon-bg { width:50px; height:50px; font-size:1.5rem; }
-  .skill-card { padding:15px; }
+/* ======================== Scroll Animations ======================== */
+section, .book-card, .skill-card, .card { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+section.visible, .book-card.visible, .skill-card.visible, .card.visible { opacity: 1; transform: translateY(0); }
+
+/* ======================== Back to Top ======================== */
+#backTop {
+  position: fixed; bottom: 30px; right: 30px; background: var(--accent);
+  color: #fff; padding: 10px 12px; border-radius: 50%; cursor: pointer;
+  font-size: 1.2rem; display: none; z-index: 1000; transition: 0.3s;
 }
+#backTop:hover { transform: translateY(-3px) scale(1.1); }

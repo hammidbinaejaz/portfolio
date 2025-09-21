@@ -114,19 +114,13 @@ footer { text-align:center; padding:2rem; font-size:0.9rem; color:#94a3b8; }
 
 <!-- Navigation -->
 <nav>
-  <div class="nav-logo">Hammid</div>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#books">Books</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <div class="hamburger">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
+  <a href="#about">About</a>
+  <a href="#skills">Skills</a>
+  <a href="#projects">Projects</a>
+  <a href="#certificates">Certificates</a>
+  <a href="#hobbies">Hobbies</a>
+  <a href="#books">Me Core</a>
+  <a href="#contact">Contact</a>
 </nav>
 
 <div class="container">
@@ -399,22 +393,6 @@ window.addEventListener('scroll', () => {
   else backBtn.style.display = 'none';
 });
 
-  // ================= Mobile Hamburger Menu =================
-const hamburger = document.querySelector('.hamburger');
-const navLinks = document.querySelector('.nav-links');
-
-hamburger.addEventListener('click', () => {
-  navLinks.classList.toggle('active');
-  hamburger.classList.toggle('toggle');
-});
-
-// Animate hamburger to X
-hamburger.addEventListener('click', () => {
-  const spans = hamburger.querySelectorAll('span');
-  spans[0].classList.toggle('rotate1');
-  spans[1].classList.toggle('fade');
-  spans[2].classList.toggle('rotate2');
-});
 </script>
   
 </body>

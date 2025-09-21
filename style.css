@@ -393,3 +393,35 @@ nav a:hover { color: var(--accent); }
     padding: 4px 6px;
   }
 }
+
+/* Mobile nav adjustments */
+@media(max-width:500px) {
+  nav {
+    padding: 8px 10px; /* Reduce top/bottom padding */
+    gap: 6px;           /* Reduce space between links */
+    flex-wrap: wrap;    /* Keep links wrapping */
+  }
+
+  nav a {
+    font-size: 0.85rem;
+    padding: 3px 5px;  /* Smaller clickable area */
+  }
+}
+@media(max-width:500px){
+  nav {
+    background: rgba(255,255,255,0.9); /* slightly transparent */
+  }
+  body.dark nav {
+    background: rgba(15,23,42,0.9);
+  }
+}
+.hero {
+  text-align: center;
+  padding: 80px 20px 40px; /* 80px for desktop, reduces overlap */
+}
+
+@media(max-width:500px){
+  .hero {
+    padding-top: 60px; /* reduce padding so content fits */
+  }
+}

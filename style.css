@@ -37,7 +37,8 @@ nav {
   display: flex;
   justify-content: center;
   gap: 25px;
-  padding: 15px 0;
+  flex-wrap: wrap;
+  padding: 15px 10px;
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(10px);
   z-index: 100;
@@ -46,22 +47,37 @@ nav {
 }
 
 body.dark nav {
-  background: rgba(15, 23, 42, 0.85);
+  background: rgba(15,23,42,0.85);
 }
 
 nav a {
   color: var(--text-light);
   text-decoration: none;
   transition: 0.3s;
+  font-size: 0.95rem;
+  padding: 5px 10px;
 }
 
-body.dark nav a {
-  color: var(--text-dark);
-}
+body.dark nav a { color: var(--text-dark); }
 
 nav a:hover,
-nav a.active {
-  color: var(--accent);
+nav a.active { color: var(--accent); }
+
+/* Mobile adjustments */
+@media(max-width:768px){
+  nav {
+    gap: 12px;
+    padding: 12px 0;
+  }
+  nav a { font-size: 0.9rem; padding: 4px 8px; }
+}
+
+@media(max-width:500px){
+  nav {
+    gap: 6px;
+    padding: 8px 0;
+  }
+  nav a { font-size: 0.85rem; padding: 3px 6px; }
 }
 
 /* ======================== Toggle Button ======================== */
@@ -95,6 +111,7 @@ nav a.active {
   padding-top: 100px;
 }
 
+/* ======================== Sections ======================== */
 section {
   margin-bottom: 80px;
   opacity: 0;
@@ -121,22 +138,6 @@ h2 {
   padding: 80px 20px;
 }
 
-.profile-photo {
-  width: 160px;
-  height: 160px;
-  border-radius: 50%;
-  border: 4px solid var(--accent);
-  object-fit: cover;
-  margin-bottom: 20px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
-  transition: transform 0.4s, box-shadow 0.4s;
-}
-
-.profile-photo:hover {
-  transform: scale(1.08) rotate(1deg);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
-}
-
 .hero h1 {
   font-size: 2.5rem;
   margin-bottom: 10px;
@@ -151,6 +152,23 @@ h2 {
   margin-bottom: 20px;
 }
 
+.profile-photo {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  border: 4px solid var(--accent);
+  object-fit: cover;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  transition: transform 0.4s, box-shadow 0.4s;
+}
+
+.profile-photo:hover {
+  transform: scale(1.08) rotate(1deg);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+}
+
+/* ======================== Buttons ======================== */
 .btn {
   display: inline-block;
   padding: 10px 20px;
@@ -168,14 +186,13 @@ h2 {
   transform: translateY(-2px);
 }
 
-/* ======================== Grid ======================== */
+/* ======================== Cards / Grid ======================== */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
 }
 
-/* ======================== Card ======================== */
 .card {
   background: #fff;
   padding: 25px;
@@ -193,7 +210,7 @@ body.dark .card {
 
 .card:hover {
   transform: translateY(-5px) scale(1.03);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
 
 .card i {
@@ -202,31 +219,47 @@ body.dark .card {
   color: var(--accent);
 }
 
-/* ======================== Skill Cards ======================== */
-.skill-card .icon-bg {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
+/* ======================== Skills Section ======================== */
+#skills {
   display: flex;
+  flex-direction: column; /* stack vertically */
   align-items: center;
-  justify-content: center;
-  margin: 0 auto 12px;
-  font-size: 2rem;
-  color: #fff;
-  transition: transform 0.3s, box-shadow 0.3s;
+  gap: 12px; /* spacing between skills */
+  padding: 20px 10px;
 }
 
-.skill-card:hover {
-  transform: translateY(-5px) scale(1.03);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+.skill {
+  font-size: 1.1rem;
+  text-align: center;
+  position: relative;
+  padding-left: 15px;
+  background-color: #f4f4f4;
+  padding: 10px 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.skill-card:hover .icon-bg {
-  transform: scale(1.2);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+.skill::before {
+  content: "•"; /* bullet point */
+  position: absolute;
+  left: 5px;
+  color: var(--accent);
+  font-weight: bold;
 }
 
-/* Individual skill colors */
+.skill:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+@media(min-width:600px){
+  .skill {
+    font-size: 1.25rem;
+  }
+}
+
+/* ======================== Skill Card Colors ======================== */
 .icon-bg.python { background: #306998; }
 .icon-bg.java { background: #f89820; }
 .icon-bg.c { background: #00599c; }
@@ -286,18 +319,14 @@ body.dark .book-card {
   color: var(--text-light);
 }
 
-body.dark .book-title {
-  color: var(--text-dark);
-}
+body.dark .book-title { color: var(--text-dark); }
 
 .book-author {
   font-size: 0.8rem;
   color: #64748b;
 }
 
-body.dark .book-author {
-  color: #cbd5e1;
-}
+body.dark .book-author { color: #cbd5e1; }
 
 /* ======================== Footer ======================== */
 footer {
@@ -327,6 +356,7 @@ footer {
   .book-card { width: 90%; }
   .grid { grid-template-columns: 1fr; }
   .skill-card { width: 100%; margin: auto; }
+  .btn { padding: 8px 14px; font-size: 0.85rem; }
 }
 
 /* ======================== Scroll Animations ======================== */
@@ -335,188 +365,17 @@ section.visible, .book-card.visible, .skill-card.visible, .card.visible { opacit
 
 /* ======================== Back to Top ======================== */
 #backTop {
-  position: fixed; bottom: 30px; right: 30px; background: var(--accent);
-  color: #fff; padding: 10px 12px; border-radius: 50%; cursor: pointer;
-  font-size: 1.2rem; display: none; z-index: 1000; transition: 0.3s;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: var(--accent);
+  color: #fff;
+  padding: 10px 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: none;
+  z-index: 1000;
+  transition: 0.3s;
 }
 #backTop:hover { transform: translateY(-3px) scale(1.1); }
-/* Hamburger Menu */
-/* Existing nav styles remain the same */
-nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-  flex-wrap: wrap; /* Allow wrapping on small screens */
-  padding: 15px 10px;
-  background: rgba(255,255,255,0.85);
-  backdrop-filter: blur(10px);
-  z-index: 100;
-  font-weight: 500;
-  transition: 0.3s;
-}
-
-/* Dark mode nav */
-body.dark nav {
-  background: rgba(15,23,42,0.85);
-}
-
-/* ======================= Nav ======================= */
-nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-  flex-wrap: wrap; /* allow wrapping on small screens */
-  padding: 15px 0;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(10px);
-  z-index: 100;
-  font-weight: 500;
-  transition: 0.3s;
-}
-
-body.dark nav {
-  background: rgba(15,23,42,0.85);
-}
-
-nav a {
-  color: var(--text-light);
-  text-decoration: none;
-  transition: 0.3s;
-  font-size: 0.95rem;
-  padding: 5px 10px;
-}
-body.dark nav a { color: var(--text-dark); }
-nav a:hover { color: var(--accent); }
-
-/* Mobile adjustments */
-@media(max-width:768px){
-  nav {
-    gap: 12px;
-    padding: 12px 0;
-  }
-  nav a { font-size: 0.9rem; padding: 4px 8px; }
-}
-
-@media(max-width:500px){
-  nav {
-    gap: 6px;
-    padding: 8px 0;
-  }
-  nav a { font-size: 0.85rem; padding: 3px 6px; }
-}
-
-/* ======================= Hero ======================= */
-.hero {
-  text-align: center;
-  padding: 80px 20px 40px; /* desktop padding */
-}
-
-/* Mobile hero fix to avoid nav overlap */
-@media(max-width:768px){
-  .hero { padding-top: 100px; }
-}
-@media(max-width:500px){
-  .hero { padding-top: 120px; }
-}
-
-/* ======================= Profile Photo ======================= */
-.profile-photo {
-  width: 160px; height: 160px;
-  border-radius: 50%; border: 4px solid var(--accent);
-  object-fit: cover; margin-bottom: 20px;
-  box-shadow:0 6px 20px rgba(0,0,0,0.12);
-  transition: transform 0.4s, box-shadow 0.4s;
-}
-
-@media(max-width:600px){
-  .profile-photo { width: 120px; height: 120px; }
-}
-@media(max-width:400px){
-  .profile-photo { width: 100px; height: 100px; }
-}
-
-/* ======================= Buttons ======================= */
-.btn { display:inline-block; padding:10px 20px; background:var(--accent); color:#fff; border-radius:8px; font-weight:600; transition:0.3s; text-decoration:none; margin-top:10px; }
-.btn:hover { background:#2563eb; transform:translateY(-2px); }
-
-@media(max-width:500px){
-  .btn { padding:8px 14px; font-size:0.85rem; }
-}
-
-/* ======================= Scroll Fade-In ======================= */
-section, .book-card, .hobby-card, .card { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
-section.visible, .book-card.visible, .hobby-card.visible, .card.visible { opacity: 1; transform: translateY(0); }
-
-/* ======================= Back-to-Top Button ======================= */
-#backTop {
-  position: fixed; bottom: 30px; right: 30px; background: var(--accent);
-  color: #fff; padding: 10px 12px; border-radius: 50%; cursor: pointer;
-  font-size: 1.2rem; display: none; z-index: 1000; transition: 0.3s;
-}
-/* Base styles for the skills section */
-/* Skills Section */
-#skills {
-  display: flex;
-  flex-direction: column; /* stack vertically */
-  align-items: center;
-  gap: 12px; /* spacing between skills */
-  padding: 20px 10px;
-}
-
-.skill {
-  font-size: 1.1rem;
-  text-align: center;
-  position: relative;
-  padding-left: 15px;
-}
-
-.skill::before {
-  content: "•"; /* the bullet */
-  position: absolute;
-  left: 0;
-  color: var(--accent);
-  font-weight: bold;
-}
-
-/* Slightly bigger for tablets */
-@media(min-width: 600px) {
-  .skill {
-    font-size: 1.25rem;
-  }
-}
-
-/* Keep vertical on all screens, no grid at all */
-
-/* Style for each skill */
-.skill {
-  background-color: #f4f4f4;
-  padding: 10px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-}
-
-.skill:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  #skills {
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  }
-}
-
-@media (max-width: 500px) {
-  #skills {
-    grid-template-columns: 1fr;
-  }
-}
-

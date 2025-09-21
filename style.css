@@ -1,0 +1,26 @@
+/* Skill card fancy style */
+.skill-card { padding:20px; text-align:center; transition: transform 0.3s, box-shadow 0.3s; }
+.skill-card .icon-bg {
+  width:70px; height:70px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 12px;
+  font-size:2rem; color:#fff; transition: transform 0.3s, box-shadow 0.3s;
+}
+.skill-card:hover { transform:translateY(-5px) scale(1.03); box-shadow:0 10px 25px rgba(0,0,0,0.15); }
+.skill-card:hover .icon-bg { transform:scale(1.2); box-shadow:0 6px 15px rgba(0,0,0,0.2); }
+
+/* Individual skill colors */
+.icon-bg.python { background:#306998; }
+.icon-bg.java { background:#f89820; }
+.icon-bg.c { background:#00599c; }
+.icon-bg.ml { background:#f59e0b; }
+.icon-bg.da { background:#10b981; }
+.icon-bg.ai { background:#8b5cf6; }
+.icon-bg.eda { background:#6366f1; }
+.icon-bg.ds { background:#ef4444; }
+.icon-bg.git { background:#f05032; }
+.icon-bg.dl { background:#06b6d4; }
+
+/* Mobile adjustments */
+@media(max-width:600px){
+  .skill-card .icon-bg { width:50px; height:50px; font-size:1.5rem; }
+  .skill-card { padding:15px; }
+}

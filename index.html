@@ -286,7 +286,113 @@ footer { text-align:center; padding:2rem; font-size:0.9rem; color:#94a3b8; }
   <p>Designed by Hammid Bin Aejaz</p>
 </footer>
 </div> <!-- container end -->
+<script>
+// ================= Dark Mode Toggle =================
+const themeToggle = document.getElementById('themeToggle');
+const currentTheme = localStorage.getItem('theme');
 
-<script src="script.js"></script>
+if (currentTheme === 'dark') {
+  document.body.classList.add('dark');
+  themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+}
+
+themeToggle.addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+  if (document.body.classList.contains('dark')) {
+    localStorage.setItem('theme', 'dark');
+    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+  } else {
+    localStorage.setItem('theme', 'light');
+    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+  }
+});
+
+// ================= Scroll Fade-In Animations =================
+const fadeElements = document.querySelectorAll('section, .book-card, .hobby-card, .card');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+fadeElements.forEach(el => observer.observe(el));
+
+// ================= Smooth Scroll for Nav Links =================
+const navLinks = document.querySelectorAll('nav a');
+navLinks.forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const targetID = link.getAttribute('href').slice(1);
+    const targetSection = document.getElementById(targetID);
+    if (targetSection) {
+      window.scrollTo({
+        top: targetSection.offsetTop - 60,
+        behavior: 'smooth'
+      });
+    }
+  });
+});
+
+// ================= Active Nav Highlight =================
+const sections = document.querySelectorAll('section');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 80;
+    if (scrollY >= sectionTop) current = section.getAttribute('id');
+  });
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === `#${current}`) link.classList.add('active');
+  });
+});
+
+// ================= Typing Effect in Hero =================
+const introText = "Hi! I’m Hammid, an AI & ML enthusiast.";
+const introElement = document.querySelector('.hero p.intro');
+let charIndex = 0;
+
+function typeEffect() {
+  if (charIndex < introText.length) {
+    introElement.textContent += introText.charAt(charIndex);
+    charIndex++;
+    setTimeout(typeEffect, 50);
+  }
+}
+introElement.textContent = '';
+typeEffect();
+
+// ================= Animated Skill Bars =================
+const skillCards = document.querySelectorAll('.skill-card');
+const skillObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const skillBar = entry.target.querySelector('.skill-bar');
+      if (skillBar) skillBar.style.width = skillBar.dataset.progress;
+    }
+  });
+}, { threshold: 0.5 });
+skillCards.forEach(card => skillObserver.observe(card));
+
+// ================= Back-to-Top Button =================
+const backBtn = document.createElement('div');
+backBtn.id = 'backTop';
+backBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+document.body.appendChild(backBtn);
+
+backBtn.style.cssText = `
+  position: fixed; bottom: 30px; right: 30px; background: var(--accent);
+  color: #fff; padding: 10px 12px; border-radius: 50%; cursor: pointer;
+  font-size: 1.2rem; display: none; z-index: 1000; transition: 0.3s;
+`;
+backBtn.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 300) backBtn.style.display = 'flex';
+  else backBtn.style.display = 'none';
+});
+
+</script>
 </body>
 </html>

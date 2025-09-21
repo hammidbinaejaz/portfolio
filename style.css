@@ -1,4 +1,4 @@
-/* ======================== Root Variables ======================== */
+/* ===================== Variables ===================== */
 :root {
   --bg-light: #fdfdfd;
   --bg-dark: #0f172a;
@@ -8,7 +8,7 @@
   --card-radius: 15px;
 }
 
-/* ======================== Global Styles ======================== */
+/* ===================== Global ===================== */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -29,7 +29,7 @@ body.dark {
   color: var(--text-dark);
 }
 
-/* ======================== Navigation ======================== */
+/* ===================== Navigation ===================== */
 nav {
   position: fixed;
   top: 0;
@@ -37,8 +37,7 @@ nav {
   display: flex;
   justify-content: center;
   gap: 25px;
-  flex-wrap: wrap;
-  padding: 15px 10px;
+  padding: 15px 0;
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(10px);
   z-index: 100;
@@ -47,40 +46,24 @@ nav {
 }
 
 body.dark nav {
-  background: rgba(15,23,42,0.85);
+  background: rgba(15, 23, 42, 0.85);
 }
 
 nav a {
   color: var(--text-light);
   text-decoration: none;
   transition: 0.3s;
-  font-size: 0.95rem;
-  padding: 5px 10px;
 }
 
-body.dark nav a { color: var(--text-dark); }
-
-nav a:hover,
-nav a.active { color: var(--accent); }
-
-/* Mobile adjustments */
-@media(max-width:768px){
-  nav {
-    gap: 12px;
-    padding: 12px 0;
-  }
-  nav a { font-size: 0.9rem; padding: 4px 8px; }
+body.dark nav a {
+  color: var(--text-dark);
 }
 
-@media(max-width:500px){
-  nav {
-    gap: 6px;
-    padding: 8px 0;
-  }
-  nav a { font-size: 0.85rem; padding: 3px 6px; }
+nav a:hover {
+  color: var(--accent);
 }
 
-/* ======================== Toggle Button ======================== */
+/* ===================== Theme Toggle ===================== */
 .toggle-btn {
   position: fixed;
   top: 15px;
@@ -103,7 +86,7 @@ nav a.active { color: var(--accent); }
   transform: scale(1.1) rotate(10deg);
 }
 
-/* ======================== Container ======================== */
+/* ===================== Container ===================== */
 .container {
   width: 90%;
   max-width: 1100px;
@@ -111,7 +94,6 @@ nav a.active { color: var(--accent); }
   padding-top: 100px;
 }
 
-/* ======================== Sections ======================== */
 section {
   margin-bottom: 80px;
   opacity: 0;
@@ -124,6 +106,7 @@ section.visible {
   transform: translateY(0);
 }
 
+/* ===================== Headings ===================== */
 h2 {
   text-align: center;
   color: var(--accent);
@@ -132,10 +115,26 @@ h2 {
   font-weight: 600;
 }
 
-/* ======================== Hero Section ======================== */
+/* ===================== Hero / About ===================== */
 .hero {
   text-align: center;
   padding: 80px 20px;
+}
+
+.profile-photo {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  border: 4px solid var(--accent);
+  object-fit: cover;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  transition: transform 0.4s, box-shadow 0.4s;
+}
+
+.profile-photo:hover {
+  transform: scale(1.08) rotate(1deg);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
 }
 
 .hero h1 {
@@ -152,23 +151,6 @@ h2 {
   margin-bottom: 20px;
 }
 
-.profile-photo {
-  width: 160px;
-  height: 160px;
-  border-radius: 50%;
-  border: 4px solid var(--accent);
-  object-fit: cover;
-  margin-bottom: 20px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-  transition: transform 0.4s, box-shadow 0.4s;
-}
-
-.profile-photo:hover {
-  transform: scale(1.08) rotate(1deg);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.2);
-}
-
-/* ======================== Buttons ======================== */
 .btn {
   display: inline-block;
   padding: 10px 20px;
@@ -186,13 +168,14 @@ h2 {
   transform: translateY(-2px);
 }
 
-/* ======================== Cards / Grid ======================== */
+/* ===================== Grid ===================== */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
 }
 
+/* ===================== Cards ===================== */
 .card {
   background: #fff;
   padding: 25px;
@@ -210,7 +193,7 @@ body.dark .card {
 
 .card:hover {
   transform: translateY(-5px) scale(1.03);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
 .card i {
@@ -219,36 +202,16 @@ body.dark .card {
   color: var(--accent);
 }
 
-/* ======================== Skills Section ======================== */
-/* ======================== Skills Section ======================== */
-#skills {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* responsive columns */
-  gap: 20px;
-  padding: 40px 20px;
-  max-width: 1000px;
-  margin: auto;
-}
-
+/* ===================== Skill Cards ===================== */
 .skill-card {
-  background-color: #f4f4f4;
-  padding: 20px 15px;
-  border-radius: 12px;
+  padding: 20px;
   text-align: center;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.skill-card:hover {
-  transform: translateY(-5px) scale(1.03);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-}
-
-/* Icon inside each skill card */
 .skill-card .icon-bg {
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -256,94 +219,43 @@ body.dark .card {
   margin: 0 auto 12px;
   font-size: 2rem;
   color: #fff;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.skill-card:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
 .skill-card:hover .icon-bg {
   transform: scale(1.2);
-  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Individual skill colors */
-.icon-bg.python { background: #306998; }
-.icon-bg.java { background: #f89820; }
-.icon-bg.c { background: #00599c; }
-.icon-bg.ml { background: #f59e0b; }
-.icon-bg.da { background: #10b981; }
-.icon-bg.ai { background: #8b5cf6; }
-.icon-bg.eda { background: #6366f1; }
-.icon-bg.ds { background: #ef4444; }
-.icon-bg.git { background: #f05032; }
-.icon-bg.dl { background: #06b6d4; }
+/* Skill Colors */
+.icon-bg.python { background:#306998; }
+.icon-bg.java { background:#f89820; }
+.icon-bg.c { background:#00599c; }
+.icon-bg.ml { background:#f59e0b; }
+.icon-bg.da { background:#10b981; }
+.icon-bg.ai { background:#8b5cf6; }
+.icon-bg.eda { background:#6366f1; }
+.icon-bg.ds { background:#ef4444; }
+.icon-bg.git { background:#f05032; }
+.icon-bg.dl { background:#06b6d4; }
 
-/* Skill text */
-.skill-card h4 {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--text-light);
-  margin-bottom: 6px;
-}
-
-.skill-card p {
-  font-size: 0.9rem;
-  color: #475569;
-}
-
-/* Dark mode */
-body.dark .skill-card {
-  background-color: #1e293b;
-}
-
-body.dark .skill-card h4 {
-  color: var(--text-dark);
-}
-
-body.dark .skill-card p {
-  color: #cbd5e1;
-}
-
-/* ======================== Responsive Adjustments ======================== */
-@media(max-width:768px){
-  #skills {
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-  }
-  .skill-card {
-    padding: 18px 12px;
-  }
-}
-
-@media(max-width:500px){
-  #skills {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* keep multi-column */
-  }
-  .skill-card {
-    padding: 15px 10px;
-  }
-}
-/* ======================== Skill Card Colors ======================== */
-.icon-bg.python { background: #306998; }
-.icon-bg.java { background: #f89820; }
-.icon-bg.c { background: #00599c; }
-.icon-bg.ml { background: #f59e0b; }
-.icon-bg.da { background: #10b981; }
-.icon-bg.ai { background: #8b5cf6; }
-.icon-bg.eda { background: #6366f1; }
-.icon-bg.ds { background: #ef4444; }
-.icon-bg.git { background: #f05032; }
-.icon-bg.dl { background: #06b6d4; }
-
-/* ======================== Books Section ======================== */
+/* ===================== Books Section ===================== */
 .book-row {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
+  gap: 20px;
+  overflow-x: auto;
   padding-bottom: 15px;
+  scroll-behavior: smooth;
 }
 
 .book-card {
   flex: 0 0 auto;
-  width: 140px;
+  min-width: 140px;
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 6px 20px rgba(0,0,0,0.12);
@@ -380,16 +292,44 @@ body.dark .book-card {
   color: var(--text-light);
 }
 
-body.dark .book-title { color: var(--text-dark); }
+body.dark .book-title {
+  color: var(--text-dark);
+}
 
 .book-author {
   font-size: 0.8rem;
   color: #64748b;
 }
 
-body.dark .book-author { color: #cbd5e1; }
+body.dark .book-author {
+  color: #cbd5e1;
+}
 
-/* ======================== Footer ======================== */
+/* ===================== Hobbies ===================== */
+.card.hobby-card {
+  flex: 0 0 auto;
+  background: #fff;
+  padding: 12px 15px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  min-width: 140px;
+  transition: all 0.5s ease, transform 0.3s ease;
+  cursor: default;
+}
+
+body.dark .card.hobby-card {
+  background:#1e293b;
+  color:#f1f5f9;
+  box-shadow:0 4px 12px rgba(0,0,0,0.3);
+}
+
+.card.hobby-card:hover {
+  transform:translateY(-5px) scale(1.05) rotateZ(1deg);
+  box-shadow:0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* ===================== Footer ===================== */
 footer {
   text-align: center;
   padding: 2rem;
@@ -397,46 +337,51 @@ footer {
   color: #94a3b8;
 }
 
-/* ======================== Mobile Styles ======================== */
-@media(max-width:800px){
-  .grid { grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 15px; }
+/* ===================== Mobile ===================== */
+@media(max-width:800px) {
+  .grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; }
   .hero h1 { font-size: 2rem; }
-  .hero p.intro { font-size: 1rem; padding: 0 10px; }
+  .hero p.intro { font-size: 1rem; padding:0 10px; }
   .profile-photo { width: 120px; height: 120px; }
   .card { padding: 15px; }
-  .btn { padding: 8px 16px; font-size: 0.9rem; }
+  .btn { padding: 8px 14px; font-size: 0.9rem; }
+  .grid.hobbies, .book-row { justify-content: flex-start; overflow-x:auto; }
 }
 
-@media(max-width:500px){
-  nav { flex-direction: column; gap: 10px; padding: 10px 0; }
-  nav a { font-size: 0.9rem; }
-  .hero h1 { font-size: 1.7rem; }
-  .hero p.intro { font-size: 0.9rem; }
-  .profile-photo { width: 100px; height: 100px; }
-  .book-row { flex-direction: column; align-items: center; }
-  .book-card { width: 90%; }
-  .grid { grid-template-columns: 1fr; }
-  .skill-card { width: 100%; margin: auto; }
-  .btn { padding: 8px 14px; font-size: 0.85rem; }
+@media(max-width:500px) {
+  nav { flex-direction: column; gap:10px; }
+  .grid { grid-template-columns:1fr; }
+  .card i { font-size:1.5rem; margin-bottom:6px; }
+  .hero h1 { font-size:1.5rem; }
+  .hero p.intro { font-size:0.9rem; }
+  .book-card img { height: 160px; }
+  .book-title { font-size: 0.9rem; }
+  .book-author { font-size: 0.75rem; }
 }
 
-/* ======================== Scroll Animations ======================== */
-section, .book-card, .skill-card, .card { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
-section.visible, .book-card.visible, .skill-card.visible, .card.visible { opacity: 1; transform: translateY(0); }
+/* ===================== Scroll Fade-in ===================== */
+section, .book-card, .hobby-card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease-out;
+}
 
-/* ======================== Back to Top ======================== */
-#backTop {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
+section.visible, .book-card.visible, .hobby-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.skill-bar-container {
+  background: #e5e7eb;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  margin-top: 8px;
+}
+.skill-bar {
+  width: 0;
+  height: 100%;
   background: var(--accent);
-  color: #fff;
-  padding: 10px 12px;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 1.2rem;
-  display: none;
-  z-index: 1000;
-  transition: 0.3s;
+  border-radius: 3px;
+  transition: width 1.2s ease-in-out;
 }
-#backTop:hover { transform: translateY(-3px) scale(1.1); }

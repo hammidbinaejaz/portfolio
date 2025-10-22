@@ -59,10 +59,6 @@ body.dark nav a {
   color: var(--text-dark);
 }
 
-nav a:hover {
-  color: var(--accent);
-}
-
 /* ===================== Theme Toggle ===================== */
 .toggle-btn {
   position: fixed;
@@ -79,11 +75,7 @@ nav a:hover {
   cursor: pointer;
   font-size: 1.2rem;
   z-index: 200;
-  transition: 0.3s;
-}
-
-.toggle-btn:hover {
-  transform: scale(1.1) rotate(10deg);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* ===================== Container ===================== */
@@ -129,12 +121,7 @@ h2 {
   object-fit: cover;
   margin-bottom: 20px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
-  transition: transform 0.4s, box-shadow 0.4s;
-}
-
-.profile-photo:hover {
-  transform: scale(1.08) rotate(1deg);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .hero h1 {
@@ -151,6 +138,7 @@ h2 {
   margin-bottom: 20px;
 }
 
+/* ===================== Buttons ===================== */
 .btn {
   display: inline-block;
   padding: 10px 20px;
@@ -158,14 +146,9 @@ h2 {
   color: #fff;
   border-radius: 8px;
   font-weight: 600;
-  transition: 0.3s;
+  transition: all 0.3s ease;
   margin-top: 10px;
   text-decoration: none;
-}
-
-.btn:hover {
-  background: #2563eb;
-  transform: translateY(-2px);
 }
 
 /* ===================== Grid ===================== */
@@ -189,11 +172,6 @@ h2 {
 
 body.dark .card {
   background: #1e293b;
-}
-
-.card:hover {
-  transform: translateY(-5px) scale(1.03);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
 .card i {
@@ -220,16 +198,6 @@ body.dark .card {
   font-size: 2rem;
   color: #fff;
   transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.skill-card:hover {
-  transform: translateY(-5px) scale(1.03);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-}
-
-.skill-card:hover .icon-bg {
-  transform: scale(1.2);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
 /* Skill Colors */
@@ -267,11 +235,6 @@ body.dark .card {
 body.dark .book-card {
   background: #1e293b;
   box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-}
-
-.book-card:hover {
-  transform: translateY(-5px) scale(1.05);
-  box-shadow: 0 12px 25px rgba(0,0,0,0.2);
 }
 
 .book-card img {
@@ -322,11 +285,6 @@ body.dark .card.hobby-card {
   background:#1e293b;
   color:#f1f5f9;
   box-shadow:0 4px 12px rgba(0,0,0,0.3);
-}
-
-.card.hobby-card:hover {
-  transform:translateY(-5px) scale(1.05) rotateZ(1deg);
-  box-shadow:0 8px 20px rgba(0,0,0,0.15);
 }
 
 /* ===================== Footer ===================== */
@@ -384,4 +342,48 @@ section.visible, .book-card.visible, .hobby-card.visible {
   background: var(--accent);
   border-radius: 3px;
   transition: width 1.2s ease-in-out;
+}
+
+/* ===================== Hover Effects (Unified Perplexity Style) ===================== */
+
+/* Buttons */
+.btn:hover {
+  background: #005f73;
+  color: #e0e0e0;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* Cards */
+.card:hover, .hobby-card:hover, .book-card:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+}
+
+/* Skill Cards */
+.skill-card:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+}
+
+.skill-card:hover .icon-bg {
+  transform: scale(1.2);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+/* Profile Photo */
+.profile-photo:hover {
+  transform: scale(1.08) rotate(1deg);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+}
+
+/* Navigation Links */
+nav a:hover {
+  color: var(--accent);
+}
+
+/* Theme Toggle Button */
+.toggle-btn:hover {
+  transform: scale(1.1) rotate(10deg);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
 }

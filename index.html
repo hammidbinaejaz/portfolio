@@ -28,7 +28,7 @@ nav {
 body.dark nav { background:rgba(15,23,42,0.85); }
 nav a { color:var(--text-light); text-decoration:none; transition:0.3s; }
 body.dark nav a { color:var(--text-dark); }
-nav a:hover, nav a.active { color:var(--accent); }
+nav a:hover { color:var(--accent); }
 
 .toggle-btn {
   position:fixed; top:15px; right:15px; width:45px; height:45px;
@@ -94,6 +94,11 @@ body.dark .book-card, body.dark .card.hobby-card { background:#1e293b; color:#f1
 .book-card p, .card.hobby-card p { font-size:0.85rem; color:#64748b; }
 body.dark .book-card p, body.dark .card.hobby-card p { color:#cbd5e1; }
 
+/* Contact Form */
+.contact-container { max-width:600px; margin:auto; text-align:left; }
+.contact-container input, .contact-container textarea { width:100%; padding:10px; margin:8px 0; border-radius:6px; border:1px solid #ccc; font-size:1rem; }
+.contact-container button { width:100%; margin-top:10px; }
+
 /* Footer */
 footer { text-align:center; padding:2rem; font-size:0.9rem; color:#94a3b8; }
 
@@ -120,12 +125,12 @@ footer { text-align:center; padding:2rem; font-size:0.9rem; color:#94a3b8; }
 
 <div class="container">
 
-<!-- ABOUT -->
+<!-- About -->
 <section id="about" class="hero">
   <div class="hero-container">
     <img src="assets/profile.jpg" alt="Hammid Bin Aejaz" class="profile-photo">
     <h1>Hammid Bin Aejaz</h1>
-    <p class="intro"></p>
+    <p class="intro">Hi! I’m Hammid, an AI & ML <span style="color:var(--accent)">enthusiast</span>. I enjoy turning data into insights and building smart systems.</p>
     <div class="social-links">
       <a href="mailto:hamidbinaejaz@gmail.com"><i class="fas fa-envelope"></i></a>
       <a href="https://github.com/hammidbinaejaz" target="_blank"><i class="fab fa-github"></i></a>
@@ -135,83 +140,24 @@ footer { text-align:center; padding:2rem; font-size:0.9rem; color:#94a3b8; }
   </div>
 </section>
 
-<!-- SKILLS -->
+<!-- Skills -->
 <section id="skills">
-  <h2>Skills</h2>
-  <div class="grid">
-    <!-- Python -->
-    <div class="card skill-card">
-      <div class="icon-bg python"><i class="fab fa-python"></i></div>
-      <h4>Python</h4>
-      <p>ML frameworks & data analysis</p>
-    </div>
-
-    <!-- Java -->
-    <div class="card skill-card">
-      <div class="icon-bg java"><i class="fab fa-java"></i></div>
-      <h4>Java</h4>
-      <p>OOP & enterprise programming</p>
-    </div>
-
-    <!-- C -->
-    <div class="card skill-card">
-      <div class="icon-bg c"><i class="fas fa-code"></i></div>
-      <h4>C</h4>
-      <p>Algorithms & DSA foundations</p>
-    </div>
-
-    <!-- Machine Learning -->
-    <div class="card skill-card">
-      <div class="icon-bg ml"><i class="fas fa-robot"></i></div>
-      <h4>Machine Learning</h4>
-      <p>Predictions & classification</p>
-    </div>
-
-    <!-- Data Analytics -->
-    <div class="card skill-card">
-      <div class="icon-bg da"><i class="fas fa-chart-line"></i></div>
-      <h4>Data Analytics</h4>
-      <p>Extract insights from data</p>
-    </div>
-
-    <!-- AI -->
-    <div class="card skill-card">
-      <div class="icon-bg ai"><i class="fas fa-brain"></i></div>
-      <h4>AI</h4>
-      <p>Neural networks & AI concepts</p>
-    </div>
-
-    <!-- EDA -->
-    <div class="card skill-card">
-      <div class="icon-bg eda"><i class="fas fa-database"></i></div>
-      <h4>EDA</h4>
-      <p>Data exploration & visualization</p>
-    </div>
-
-    <!-- DSA -->
-    <div class="card skill-card">
-      <div class="icon-bg ds"><i class="fas fa-network-wired"></i></div>
-      <h4>DSA</h4>
-      <p>Strong algorithm knowledge</p>
-    </div>
-
-    <!-- Git/GitHub -->
-    <div class="card skill-card">
-      <div class="icon-bg git"><i class="fab fa-git-alt"></i></div>
-      <h4>Git/GitHub</h4>
-      <p>Version control & collaboration</p>
-    </div>
-
-    <!-- Deep Learning -->
-    <div class="card skill-card">
-      <div class="icon-bg dl"><i class="fas fa-layer-group"></i></div>
-      <h4>Deep Learning</h4>
-      <p>Neural networks implementation</p>
-    </div>
-  </div>
+<h2>Skills</h2>
+<div class="grid">
+  <div class="card skill-card"><div class="icon-bg python"><i class="fab fa-python"></i></div><h4>Python</h4><p>ML frameworks & data analysis</p></div>
+  <div class="card skill-card"><div class="icon-bg java"><i class="fab fa-java"></i></div><h4>Java</h4><p>OOP & enterprise programming</p></div>
+  <div class="card skill-card"><div class="icon-bg c"><i class="fas fa-c"></i></div><h4>C</h4><p>Algorithms & DSA foundations</p></div>
+  <div class="card skill-card"><div class="icon-bg ml"><i class="fas fa-robot"></i></div><h4>Machine Learning</h4><p>Predictions & classification</p></div>
+  <div class="card skill-card"><div class="icon-bg da"><i class="fas fa-chart-line"></i></div><h4>Data Analytics</h4><p>Extract insights from data</p></div>
+  <div class="card skill-card"><div class="icon-bg ai"><i class="fas fa-brain"></i></div><h4>AI</h4><p>Neural networks & AI concepts</p></div>
+  <div class="card skill-card"><div class="icon-bg eda"><i class="fas fa-database"></i></div><h4>EDA</h4><p>Data exploration & visualization</p></div>
+  <div class="card skill-card"><div class="icon-bg ds"><i class="fas fa-network-wired"></i></div><h4>DSA</h4><p>Strong algorithm knowledge</p></div>
+  <div class="card skill-card"><div class="icon-bg git"><i class="fab fa-git-alt"></i></div><h4>Git/GitHub</h4><p>Version control & collaboration</p></div>
+  <div class="card skill-card"><div class="icon-bg dl"><i class="fas fa-layer-group"></i></div><h4>Deep Learning</h4><p>Neural networks implementation</p></div>
+</div>
 </section>
 
-<!-- PROJECTS -->
+<!-- Projects -->
 <section id="projects">
 <h2>Projects</h2>
 <div class="grid">
@@ -252,11 +198,14 @@ footer { text-align:center; padding:2rem; font-size:0.9rem; color:#94a3b8; }
 </div>
 </section>
 
-<!-- CERTIFICATES -->
+<!-- Certificates -->
 <section id="certificates">
 <h2>Certificates</h2>
 <div class="grid">
-  <div class="card"><h3>AI Fundamentals – IBM</h3><a class="btn" href="assets/IBMDesign20250820-28-p0i2bg.pdf" download>Download</a></div>
+  <div class="card">
+    <h3>AI Fundamentals – IBM</h3>
+    <a class="btn" href="assets/IBMDesign20250820-28-p0i2bg.pdf" download>Download</a>
+  </div>
   <div class="card"><h3>Data Structures – Infosys</h3></div>
   <div class="card"><h3>Advanced DSA – Infosys</h3></div>
   <div class="card"><h3>Artificial Intelligence – Infosys</h3></div>
@@ -264,7 +213,7 @@ footer { text-align:center; padding:2rem; font-size:0.9rem; color:#94a3b8; }
 </div>
 </section>
 
-<!-- HOBBIES -->
+<!-- Hobbies -->
 <section id="hobbies">
 <h2>Hobbies</h2>
 <div class="grid hobbies">
@@ -275,60 +224,85 @@ footer { text-align:center; padding:2rem; font-size:0.9rem; color:#94a3b8; }
 </div>
 </section>
 
-<!-- BOOKS -->
+<!-- Books -->
+<!-- Books Section -->
+<!-- Books Section -->
 <section id="books">
-<h2>Learning & Growth</h2>
-<div class="book-row">
-  <div class="book-card"><div class="book-title">Atomic Habits</div><div class="book-author">James Clear</div></div>
-  <div class="book-card"><div class="book-title">Do Your Work</div><div class="book-author">Steven Pressfield</div></div>
-  <div class="book-card"><div class="book-title">Why We Sleep</div><div class="book-author">Matthew Walker</div></div>
-  <div class="book-card"><div class="book-title">The Subtle Art of Not Giving a F*ck</div><div class="book-author">Mark Manson</div></div>
-  <div class="book-card"><div class="book-title">The Brain: The Story of You</div><div class="book-author">David Eagleman</div></div>
-  <div class="book-card"><div class="book-title">Pir-e-Kamil</div><div class="book-author">Umera Ahmed</div></div>
-  <div class="book-card"><div class="book-title">The Happiness Advantage</div><div class="book-author">Shawn Achor</div></div>
-  <div class="book-card"><div class="book-title">Grit</div><div class="book-author">Angela Duckworth</div></div>
-</div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-<h2>Contact Me</h2>
-<div class="grid" style="justify-content:center; gap:20px;">
-  <div class="card" style="padding:20px;">
-    <p><i class="fas fa-envelope"></i> Email: <a href="mailto:hamidbinaejaz@gmail.com">hamidbinaejaz@gmail.com</a></p>
-    <p><i class="fab fa-github"></i> GitHub: <a href="https://github.com/hammidbinaejaz" target="_blank">github.com/hammidbinaejaz</a></p>
-    <p><i class="fab fa-linkedin"></i> LinkedIn: <a href="https://www.linkedin.com/in/hamid-bin-aejaz-7b7b392a2/" target="_blank">linkedin.com/in/hamid-bin-aejaz</a></p>
+  <h2>Learning & Growth</h2>
+  <div class="book-row">
+    <div class="book-card">
+      <div class="book-title">Atomic Habits</div>
+      <div class="book-author">James Clear</div>
+    </div>
+    <div class="book-card">
+      <div class="book-title">Do Your Work</div>
+      <div class="book-author">Steven Pressfield</div>
+    </div>
+    <div class="book-card">
+      <div class="book-title">Why We Sleep</div>
+      <div class="book-author">Matthew Walker</div>
+    </div>
+    <div class="book-card">
+      <div class="book-title">The Subtle Art of Not Giving a F*ck</div>
+      <div class="book-author">Mark Manson</div>
+    </div>
+    <div class="book-card">
+      <div class="book-title">The Brain: The Story of You</div>
+      <div class="book-author">David Eagleman</div>
+    </div>
+    <div class="book-card">
+      <div class="book-title">Pir-e-Kamil</div>
+      <div class="book-author">Umera Ahmed</div>
+    </div>
+    <div class="book-card">
+      <div class="book-title">The Happiness Advantage</div>
+      <div class="book-author">Shawn Achor</div>
+    </div>
+    <div class="book-card">
+      <div class="book-title">Grit</div>
+      <div class="book-author">Angela Duckworth</div>
+    </div>
   </div>
-</div>
 </section>
 
-<!-- FOOTER -->
-<footer>
+
+<!-- Contact -->
+<!-- Contact -->
+<section id="contact">
+  <h2>Contact Me</h2>
+  <div class="grid" style="justify-content:center; gap:20px;">
+    <div class="card" style="padding:20px;">
+      <p><i class="fas fa-envelope"></i> Email: <a href="mailto:hamidbinaejaz@gmail.com">hamidbinaejaz@gmail.com</a></p>
+      <p><i class="fab fa-github"></i> GitHub: <a href="https://github.com/hammidbinaejaz" target="_blank">github.com/hammidbinaejaz</a></p>
+      <p><i class="fab fa-linkedin"></i> LinkedIn: <a href="https://www.linkedin.com/in/hamid-bin-aejaz-7b7b392a2/" target="_blank">linkedin.com/in/hamid-bin-aejaz</a></p>
+    </div>
+  </div>
+</section>
+<!-- Footer -->
+<footer style="text-align:center; padding:2rem; font-size:0.9rem; color:#94a3b8;">
   <p style="margin-bottom:8px; font-style:italic;">
     "The future belongs to those who understand that artificial intelligence is not about replacing humans, but augmenting human capabilities."
   </p>
   <p>Designed by Hammid Bin Aejaz</p>
 </footer>
-
 </div> <!-- container end -->
-
 <script>
 // ================= Dark Mode Toggle =================
 const themeToggle = document.getElementById('themeToggle');
 const currentTheme = localStorage.getItem('theme');
 
-if(currentTheme === 'dark'){
+if (currentTheme === 'dark') {
   document.body.classList.add('dark');
   themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
 }
 
 themeToggle.addEventListener('click', () => {
   document.body.classList.toggle('dark');
-  if(document.body.classList.contains('dark')){
-    localStorage.setItem('theme','dark');
+  if (document.body.classList.contains('dark')) {
+    localStorage.setItem('theme', 'dark');
     themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
   } else {
-    localStorage.setItem('theme','light');
+    localStorage.setItem('theme', 'light');
     themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
   }
 });
@@ -337,35 +311,38 @@ themeToggle.addEventListener('click', () => {
 const fadeElements = document.querySelectorAll('section, .book-card, .hobby-card, .card');
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    if(entry.isIntersecting) entry.target.classList.add('visible');
+    if (entry.isIntersecting) entry.target.classList.add('visible');
   });
-}, {threshold:0.1});
+}, { threshold: 0.1 });
 fadeElements.forEach(el => observer.observe(el));
 
 // ================= Smooth Scroll for Nav Links =================
 const navLinks = document.querySelectorAll('nav a');
 navLinks.forEach(link => {
-  link.addEventListener('click',(e)=>{
+  link.addEventListener('click', (e) => {
     e.preventDefault();
     const targetID = link.getAttribute('href').slice(1);
     const targetSection = document.getElementById(targetID);
-    if(targetSection){
-      window.scrollTo({ top: targetSection.offsetTop-60, behavior:'smooth'});
+    if (targetSection) {
+      window.scrollTo({
+        top: targetSection.offsetTop - 60,
+        behavior: 'smooth'
+      });
     }
   });
 });
 
 // ================= Active Nav Highlight =================
 const sections = document.querySelectorAll('section');
-window.addEventListener('scroll',()=>{
-  let current='';
-  sections.forEach(section=>{
-    const sectionTop=section.offsetTop-80;
-    if(scrollY>=sectionTop) current=section.getAttribute('id');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 80;
+    if (scrollY >= sectionTop) current = section.getAttribute('id');
   });
-  navLinks.forEach(link=>{
+  navLinks.forEach(link => {
     link.classList.remove('active');
-    if(link.getAttribute('href')===`#${current}`) link.classList.add('active');
+    if (link.getAttribute('href') === `#${current}`) link.classList.add('active');
   });
 });
 
@@ -373,51 +350,47 @@ window.addEventListener('scroll',()=>{
 const introText = "Hi! I’m Hammid, an AI & ML enthusiast.";
 const introElement = document.querySelector('.hero p.intro');
 let charIndex = 0;
-function typeEffect(){
-  if(charIndex < introText.length){
+
+function typeEffect() {
+  if (charIndex < introText.length) {
     introElement.textContent += introText.charAt(charIndex);
     charIndex++;
-    setTimeout(typeEffect,50);
+    setTimeout(typeEffect, 50);
   }
 }
-introElement.textContent='';
+introElement.textContent = '';
 typeEffect();
+
+// ================= Animated Skill Bars =================
+const skillCards = document.querySelectorAll('.skill-card');
+const skillObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const skillBar = entry.target.querySelector('.skill-bar');
+      if (skillBar) skillBar.style.width = skillBar.dataset.progress;
+    }
+  });
+}, { threshold: 0.5 });
+skillCards.forEach(card => skillObserver.observe(card));
 
 // ================= Back-to-Top Button =================
 const backBtn = document.createElement('div');
 backBtn.id = 'backTop';
-backBtn.innerHTML = '<i class="fas fa-chevron-up"></i>';
-backBtn.style.position = 'fixed';
-backBtn.style.bottom = '30px';
-backBtn.style.right = '30px';
-backBtn.style.width = '45px';
-backBtn.style.height = '45px';
-backBtn.style.background = 'var(--accent)';
-backBtn.style.color = '#fff';
-backBtn.style.display = 'flex';
-backBtn.style.alignItems = 'center';
-backBtn.style.justifyContent = 'center';
-backBtn.style.borderRadius = '50%';
-backBtn.style.cursor = 'pointer';
-backBtn.style.boxShadow = '0 6px 20px rgba(0,0,0,0.2)';
-backBtn.style.transition = '0.3s';
-backBtn.style.zIndex = '1000';
-backBtn.style.opacity = '0';
-backBtn.style.pointerEvents = 'none';
+backBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
 document.body.appendChild(backBtn);
 
+backBtn.style.cssText = `
+  position: fixed; bottom: 30px; right: 30px; background: var(--accent);
+  color: #fff; padding: 10px 12px; border-radius: 50%; cursor: pointer;
+  font-size: 1.2rem; display: none; z-index: 1000; transition: 0.3s;
+`;
 backBtn.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
 window.addEventListener('scroll', () => {
-  if (window.scrollY > 300) {
-    backBtn.style.opacity = '1';
-    backBtn.style.pointerEvents = 'auto';
-  } else {
-    backBtn.style.opacity = '0';
-    backBtn.style.pointerEvents = 'none';
-  }
+  if (window.scrollY > 300) backBtn.style.display = 'flex';
+  else backBtn.style.display = 'none';
 });
 
 </script>
